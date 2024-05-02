@@ -2,4 +2,6 @@ root: ./docs
 structure:
   Connection: Connection_using_VSCode.md
   Basic Usage: MidwayGeoSpatial.md
+  Environment: CondaEnvironment.md
   GeoAI: GeoAI_on_Midway.md
+

@@ -59,4 +59,6 @@ Containers provide a reproducible environment for more complex or customized set
     singularity shell -B $HOME/code/cook -B $SCRATCH/$USER:/data otbtf_6.3.1-cpu.sif
     ```
 
+export SINGULARITY_TMPDIR="/software/src/tmp"
+export SINGULARITY_CACHEDIR="/software/src/cache"
 This guide covers the basic setup for geospatial analysis on Midway3. Depending on specific project requirements, additional configurations or software packages might be necessary.
