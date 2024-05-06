@@ -1,7 +1,11 @@
 root: ./docs
 structure:
+  summary: summary.md
+  assets: assets
   Connection: Connection_using_VSCode.md
   Basic Usage: MidwayGeoSpatial.md
+  Softwares: Software.md
   Environment: CondaEnvironment.md
   GeoAI: GeoAI_on_Midway.md
+  OTBTF: OTBTF.md
 
