@@ -14,7 +14,7 @@ Windows users will need to authenticate each time with a password and 2FA, as `C
      User <username>
 
    Host hpcx
-     ProxyCommand ssh midway3 nc $(/central/slurm/install/current/bin/squeue --me --name=tunnel --states=R -h -O NodeList,Comment)
+     ProxyCommand ssh midway3 nc $(/software/slurm-current-el8-x86_64/bin/squeue --me --name=tunnel --states=R -h -O NodeList,Comment)
      StrictHostKeyChecking no
      User <username>
    ```
