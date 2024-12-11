@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+
+const resources = [
+  { href: '/resources/software', label: 'Software' },
+  { href: '/resources/data', label: 'Data Collections' },
+  { href: '/resources/labs', label: 'Lab Facilities' },
+  { href: '/resources/imagery', label: 'Imagery' }
+];
+
+const services = [
+  { href: '/services/computing', label: 'Computing Resources' },
+  { href: '/services/geocoding', label: 'Geocoding' },
+  { href: '/training', label: 'Training' }
+];
+---
+
+<footer class="border-t">
+  <div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <Image
+            src="https://gis.rcc.uchicago.edu/wp-content/uploads/2024/02/LOGO_GIS_New_1.png"
+            alt="RCC GIS Logo"
+            width={100}
+            height={33}
+            class="h-8 w-auto"
+          />
+        </div>
+        <p class="text-sm text-muted-foreground">
+          Research Computing Center<br />
+          The University of Chicago<br />
+          Regenstein Library Room 216
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-4">Resources</h3>
+        <ul class="space-y-2">
+          {resources.map(({ href, label }) => (
+            <li>
+              <a href={href} class="text-sm text-muted-foreground hover:text-foreground">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-4">Services</h3>
+        <ul class="space-y-2">
+          {services.map(({ href, label }) => (
+            <li>
+              <a href={href} class="text-sm text-muted-foreground hover:text-foreground">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-4">Contact</h3>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="mailto:gis-help@rcc.uchicago.edu"
+              class="text-sm text-muted-foreground hover:text-foreground"
+            >
+              gis-help@rcc.uchicago.edu
+            </a>
+          </li>
+          <li>
+            <a href="/contact" class="text-sm text-muted-foreground hover:text-foreground">
+              Get Support
+            </a>
+          </li>
+          <li>
+            <p class="text-sm text-muted-foreground">
+              Office Hours:<br />
+              Monday-Friday<br />
+              9:00 AM - 5:00 PM
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
+      <p>© {new Date().getFullYear()} The University of Chicago. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

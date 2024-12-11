@@ -1,0 +1,131 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+// Define the remote image URL
+const bgImageUrl = "https://raw.githubusercontent.com/rcc-uchicago/GIS/gh-pages/sites/all/themes/nexus_playground/images/slide-image-1.jpg";
+
+const features = [
+  {
+    icon: 'lucide:map',
+    title: 'GIS Software',
+    description: 'Access ArcGIS Pro, QGIS, and specialized tools',
+    href: '/resources/software'
+  },
+  {
+    icon: 'lucide:database',
+    title: 'Data Resources',
+    description: 'Chicago GIS data portal and spatial datasets',
+    href: '/resources/data'
+  },
+  {
+    icon: 'lucide:school',
+    title: 'Training',
+    description: 'GIS workshops and self-paced tutorials',
+    href: '/training'
+  },
+  {
+    icon: 'lucide:users',
+    title: 'Support',
+    description: 'Expert consultation and technical assistance',
+    href: '/contact'
+  }
+];
+---
+
+<Layout title="CyberGIS at UChicago">
+  <!-- Hero Section -->
+  <section class="relative h-[600px] w-full">
+    <div class="absolute inset-0">
+      <img 
+        src={bgImageUrl}
+        alt="CyberGIS Background"
+        class="w-full h-full object-cover brightness-[0.65] filter contrast-[1.1]"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70"></div>
+    </div>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="text-center text-white p-8">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          CyberGIS at UChicago
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+          Advanced spatial computing and analytics for research innovation
+        </p>
+        <div class="flex gap-4 justify-center">
+          <a 
+            href="/resources" 
+            class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium"
+          >
+            Explore Resources
+          </a>
+          <a 
+            href="/contact" 
+            class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-medium"
+          >
+            Get Support
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {features.map(({ icon, title, description, href }) => (
+        <a 
+          href={href}
+          class="group block p-6 bg-card hover:shadow-lg transition-shadow rounded-lg border"
+        >
+          <Icon name={icon} class="h-6 w-6 mb-4" />
+          <h3 class="text-xl font-semibold mb-2">{title}</h3>
+          <p class="text-muted-foreground">{description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="bg-muted py-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">About RCC-GIS</h2>
+        <p class="text-lg mb-6">
+          The University of Chicago's Research Computing Center (RCC) for Geographic Information Science (GIS) 
+          is at the forefront of integrating Big Data, AI, and GIScience. Our commitment spans interdisciplinary 
+          research in:
+        </p>
+        <ul class="list-disc list-inside space-y-2 mb-6 text-lg">
+          <li>Geospatial big data analytics</li>
+          <li>Spatial computing</li>
+          <li>Geospatial AI (GeoAI)</li>
+          <li>CyberGIS</li>
+        </ul>
+        <p class="text-lg">
+          RCC-GIS engages in interdisciplinary research and education with UChicago users who want to incorporate 
+          GIS methods and software. We offer comprehensive services including cartography, data mining, spatial 
+          statistics, and high-performance computing solutions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="container mx-auto px-4 py-16">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+      <p class="text-lg text-muted-foreground mb-8">
+        Our team is here to help you with your GIS needs.
+      </p>
+      <a 
+        href="/contact" 
+        class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium inline-block"
+      >
+        Contact Us
+      </a>
+    </div>
+  </section>
+</Layout>

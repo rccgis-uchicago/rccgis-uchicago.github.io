@@ -1,0 +1,23 @@
+---
+layout: ../../layouts/ContentLayout.astro
+title: RCC-GIS Geocoding Service
+description: Convert addresses to coordinates with our geocoding service
+---
+import { Icon } from 'astro-icon/components';
+import Card from '../../components/Card.astro';
+
+# Geocoding Service
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
+  <Card title="Features">
+    <Icon name="lucide:map-pin" className="h-8 w-8 mb-4 text-primary" />
+    <ul className="space-y-2 text-sm">
+      <li>Batch geocoding</li>
+      <li>High accuracy</li>
+      <li>Multiple output formats</li>
+    </ul>
+  </Card>
+  {/* Add more cards */}
+</div>
+
+{/* Rest of your content */}
