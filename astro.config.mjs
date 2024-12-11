@@ -16,6 +16,6 @@ export default defineConfig({
       }
     })
   ],
-  site: 'https://rccgis-uchicago.github.io',
-  base: '/site'
+  site: 'https://rccgis-uchicago.github.io/site',
+  // base: '/site', // We don't need this anymore since it's included in the site URL
 });
