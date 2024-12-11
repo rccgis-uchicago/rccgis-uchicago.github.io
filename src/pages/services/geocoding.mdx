@@ -1,23 +1,220 @@
 ---
 layout: ../../layouts/ContentLayout.astro
 title: RCC-GIS Geocoding Service
-description: Convert addresses to coordinates with our geocoding service
+description: Convert addresses to coordinates with our enterprise geocoding solution
 ---
 import { Icon } from 'astro-icon/components';
 import Card from '../../components/Card.astro';
 
 # Geocoding Service
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
   <Card title="Features">
     <Icon name="lucide:map-pin" className="h-8 w-8 mb-4 text-primary" />
     <ul className="space-y-2 text-sm">
       <li>Batch geocoding</li>
       <li>High accuracy</li>
       <li>Multiple output formats</li>
+      <li>Real-time processing</li>
     </ul>
   </Card>
-  {/* Add more cards */}
+  <Card title="Coverage">
+    <Icon name="lucide:globe" className="h-8 w-8 mb-4 text-primary" />
+    <ul className="space-y-2 text-sm">
+      <li>Global coverage</li>
+      <li>Country-specific formats</li>
+      <li>Detailed address matching</li>
+      <li>Multiple language support</li>
+    </ul>
+  </Card>
+  <Card title="Access">
+    <Icon name="lucide:key" className="h-8 w-8 mb-4 text-primary" />
+    <ul className="space-y-2 text-sm">
+      <li>UChicago affiliates</li>
+      <li>2000 credits default</li>
+      <li>50,000 records capacity</li>
+      <li>Enterprise support</li>
+    </ul>
+  </Card>
 </div>
 
-{/* Rest of your content */}
+## Service Overview
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+  <div>
+    <p className="text-lg mb-4">
+      The University of Chicago RCC-GIS Geocoding Service provides enterprise-level geocoding capabilities powered by ESRI's World Geocoder for ArcGIS. This service enables precise conversion of addresses and place names into geographic coordinates.
+    </p>
+    <ul className="space-y-3">
+      <li>✓ Process up to 50,000 records per batch</li>
+      <li>✓ Support for international address formats</li>
+      <li>✓ High-precision coordinate matching</li>
+      <li>✓ Comprehensive match quality scoring</li>
+    </ul>
+  </div>
+  <div className="rounded-lg overflow-hidden shadow-lg">
+    <img 
+      src="https://pro.arcgis.com/en/pro-app/latest/help/data/geocoding/GUID-3B167649-333E-4665-94D9-A53A05245639-web.png" 
+      alt="Geocoding Interface"
+      className="w-full max-h-[150px] object-cover object-center object-center-center"
+
+    />
+  </div>
+</div>
+
+<div className="bg-muted p-4 rounded-lg my-6">
+  <h3 className="text-lg font-semibold mb-2">Credit Allocation</h3>
+  <p>
+    All users receive 2000 credits by default, enabling geocoding of up to 50,000 records. Additional credits available upon request.
+  </p>
+  <a href="mailto:gis-help@rcc.uchicago.edu" className="text-primary hover:underline">Contact us for more credits</a>
+</div>
+
+## Data Preparation
+
+### Required Format
+<div className="grid grid-cols-1 md:grid-cols-1 gap-6 my-6">
+  <div className="border rounded-lg p-4">
+    <h4 className="font-semibold mb-2">File Specifications</h4>
+    <ul className="space-y-2">
+      <li>Format: CSV (comma-separated value)</li>
+      <li>Encoding: UTF-8</li>
+      <li>Headers: Required (standardized)</li>
+      <li>Size: Up to 50,000 records per batch</li>
+    </ul>
+  </div>
+</div>
+
+
+### Accepted Column Headers
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+  <div>
+    <ul className="space-y-2">
+      <li><code>ID</code>: Unique identifier</li>
+      <li><code>ADDRESS</code>: Street address</li>
+      <li><code>NEIGHBORHOOD</code>: Local area name</li>
+      <li><code>CITY</code>: City name</li>
+    </ul>
+  </div>
+  <div>
+    <ul className="space-y-2">
+      <li><code>SUBREGION</code>: County/district</li>
+      <li><code>REGION/STATE/ST</code>: State/province</li>
+      <li><code>POSTAL/ZIP/ZIPCODE</code>: Postal code</li>
+      <li><code>COUNTRYCODE</code>: ISO country code</li>
+    </ul>
+  </div>
+</div>
+
+<div className="bg-muted p-4 rounded-lg my-6">
+  <Icon name="lucide:info" className="h-6 w-6 mb-2 text-primary" />
+  <p>
+    Download example files:
+    <a href="https://raw.githubusercontent.com/rcc-uchicago/GIS/refs/heads/gh-pages/sites/default/files/example_us_address.csv" className="text-primary hover:underline ml-2">US Address Format</a> |
+    <a href="https://www.notion.so/rccgis/International-address-file-bed388ad2beb47a49a6f5cc510f8ccf9" className="text-primary hover:underline ml-2">International Format</a>
+  </p>
+</div>
+
+## Using the Service
+
+### 1. Sign In Process
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+  <div className="border rounded-lg p-4">
+    <h4 className="font-semibold mb-2">Enterprise Login Steps</h4>
+    <ol className="list-decimal list-inside space-y-2">
+      <li>Visit the ArcGIS Online portal</li>
+      <li>Click "Sign in with Enterprise Login"</li>
+      <li>Enter portal URL: "uchicago.maps.arcgis.com"</li>
+      <li>Select UCHICAGO login option</li>
+      <li>Use your CNetID credentials</li>
+    </ol>
+  </div>
+  <div className="border rounded-lg p-4">
+    <img 
+      src="https://raw.githubusercontent.com/rcc-uchicago/GIS/refs/heads/gh-pages/sites/all/themes/nexus_playground/images/geocoder/step2.jpg" 
+      alt="Login Interface"
+      className="w-full object-scale-down"
+    />
+  </div>
+</div>
+
+### 2. File Processing
+<div className="space-y-4 my-6">
+  <div className="border rounded-lg p-4">
+    <h4 className="font-semibold mb-2">Processing Steps</h4>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <ol className="list-decimal list-inside space-y-2">
+        <li>Click "Select File" to upload your CSV</li>
+        <li>Submit for processing</li>
+        <li>Monitor progress (refresh browser as needed)</li>
+        <li>Download results when complete</li>
+      </ol>
+      <img 
+        src="https://raw.githubusercontent.com/rcc-uchicago/GIS/refs/heads/gh-pages/sites/all/themes/nexus_playground/images/geocoder/geocoding_interface.jpg.png" 
+        alt="Processing Interface"
+        className="w-full object-scale-down"
+      />
+    </div>
+    <p className="text-sm text-muted-foreground mt-4">
+      Processing speed: Approximately 250,000 - 500,000 records per hour
+    </p>
+  </div>
+</div>
+
+### 3. Understanding Results
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+  <div className="border rounded-lg p-4">
+    <h4 className="font-semibold mb-2">Output Fields</h4>
+    <ul className="space-y-2">
+      <li><strong>LATITUDE</strong>: Coordinate position</li>
+      <li><strong>LONGITUDE</strong>: Coordinate position</li>
+      <li><strong>MATCH_SCORE</strong>: Accuracy indicator</li>
+      <li><strong>MATCH_TYPE</strong>: Level of match</li>
+      <li><strong>MATCH_ADDR</strong>: Matched address</li>
+    </ul>
+  </div>
+  <div className="border rounded-lg p-4">
+    <h4 className="font-semibold mb-2">Match Score Guide</h4>
+    <ul className="space-y-2">
+      <li><span className="text-green-600">100%</span>: Perfect match</li>
+      <li><span className="text-yellow-600">90-99%</span>: Suitable for most uses</li>
+      <li><span className="text-red-600">&lt;90%</span>: Review recommended</li>
+    </ul>
+
+  </div>
+</div>
+
+<div className="bg-muted p-4 rounded-lg my-6">
+  <h3 className="text-lg font-semibold mb-2">Important Notes</h3>
+  <ul className="space-y-2">
+    <li>Results are available for download for 7 days</li>
+    <li>Low match scores may indicate location approximation</li>
+    <li>Validate or exclude results with match scores below 90%</li>
+    <li>Consider reviewing matches in a GIS application</li>
+  </ul>
+</div>
+
+<div className="mt-8 p-6 bg-primary/10 rounded-lg">
+  <h3 className="text-xl font-semibold mb-4">Need Help?</h3>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h4 className="font-semibold mb-2">Technical Support</h4>
+      <p>
+        For technical issues or questions about the geocoding service, contact:{' '}
+        <a href="mailto:gis-help@rcc.uchicago.edu" className="text-primary hover:underline">
+          gis-help@rcc.uchicago.edu
+        </a>
+      </p>
+    </div>
+    <div>
+      <h4 className="font-semibold mb-2">Documentation</h4>
+      <p>
+        Access our complete documentation and tutorials on the{' '}
+        <a href="https://gis.rcc.uchicago.edu/documentation" className="text-primary hover:underline">
+          RCC-GIS Documentation Portal
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

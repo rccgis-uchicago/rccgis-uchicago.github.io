@@ -75,4 +75,4 @@ The site is automatically deployed through GitHub Actions when changes are pushe
 
 ## 📫 Contact
 
-For questions or support, please contact the RCC-GIS team at [your-email@uchicago.edu]
+For questions or support, please contact the RCC-GIS team at [gis-help@rcc.uchicago.edu]
