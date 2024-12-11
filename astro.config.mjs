@@ -15,5 +15,7 @@ export default defineConfig({
         lucide: ['*']  // This includes all Lucide icons
       }
     })
-  ]
+  ],
+  site: 'https://rccgis-uchicago.github.io',
+  base: '/site'
 });
