@@ -3,16 +3,18 @@
 This is the website for the University of Chicago's Research Computing Center (RCC) Geographic Information Science (GIS). It provides information about GIS resources, training, and support services.
 
 ## 🚀 Project Structure 
-
-/
+```
 ├── public/
-│ └── assets/
+│   └── assets/
 ├── src/
-│ ├── components/
-│ ├── layouts/
-│ ├── pages/
-│ └── styles/
-└── package.json
+│   ├── components/
+│   ├── layouts/
+│   ├── pages/
+│   └── styles/
+├── package.json
+└── README.md
+```
+
 
 ## 🧞 Commands
 
