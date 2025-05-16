@@ -1,49 +1,91 @@
-name: Deploy to GitHub Pages
+name: Deploy to Cloudron Surfer
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
   push:
-    branches: [ master ]
-  # Allow triggering the workflow manually
-  workflow_dispatch:
-
-# Allow this job to clone the repo and create a page deployment
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches:
+      - master  # Trigger deployment on pushes to the master branch
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Astro site
-        run: npm run build
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4 
+    # Step 1: Checkout the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Node.js (required for Surfer CLI)
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Use a compatible Node.js version
+
+    # Step 3: Install Surfer CLI
+    - name: Install Surfer CLI
+      run: npm install -g cloudron-surfer
+
+    # Step 4: Build the site (if applicable)
+    - name: Build the site
+      run: |
+        npm install  # Install dependencies (if applicable)
+        npm run build  # Replace with your build command (e.g., jekyll build, npm run build)
+
+    # Step 5: Deploy to Cloudron Surfer
+    - name: Deploy to Cloudron Surfer
+      env:
+        SURFER_SERVER: test.rccgis.org  # Your Surfer app domain
+        SURFER_TOKEN: ${{ secrets.SURFER_API_TOKEN }}  # API token stored as a GitHub secret
+      run: |
+        surfer config --server $SURFER_SERVER --token $SURFER_TOKEN
+        surfer put dist/* /  # Replace 'dist' with your build output directory
+
+
+# name: Deploy to GitHub Pages
+
+# on:
+#   # Trigger the workflow every time you push to the `main` branch
+#   push:
+#     branches: [ master ]
+#   # Allow triggering the workflow manually
+#   workflow_dispatch:
+
+# # Allow this job to clone the repo and create a page deployment
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout your repository using git
+#         uses: actions/checkout@v4
+
+#       - name: Setup Node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: '20'
+#           cache: 'npm'
+
+#       - name: Install dependencies
+#         run: npm ci
+
+#       - name: Build Astro site
+#         run: npm run build
+
+#       - name: Upload Pages artifact
+#         uses: actions/upload-pages-artifact@v3
+#         with:
+#           path: dist
+
+#   deploy:
+#     needs: build
+#     runs-on: ubuntu-latest
+#     environment:
+#       name: github-pages
+#       url: ${{ steps.deployment.outputs.page_url }}
+#     steps:
+#       - name: Deploy to GitHub Pages
+#         id: deployment
+#         uses: actions/deploy-pages@v4 
