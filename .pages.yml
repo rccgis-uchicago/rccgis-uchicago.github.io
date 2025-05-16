@@ -1,0 +1,114 @@
+content:
+  - name: projects
+    label: Projects
+    path: src/pages/projects
+    type: collection
+    format: mdx
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        default: "@layouts/MarkdownProjectLayout.astro"
+        widget: hidden
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: string
+      - name: image
+        label: Featured Image
+        type: image
+      - name: author
+        label: Author
+        type: string
+      - name: body
+        label: Content
+        type: rich-text
+        required: true
+
+  - name: resources
+    label: Resources
+    path: src/pages/resources
+    type: collection
+    format: mdx
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        default: "@layouts/MarkdownResourceLayout.astro"
+        widget: hidden
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: string
+      - name: image
+        label: Featured Image
+        type: image
+      - name: body
+        label: Content
+        type: rich-text
+        required: true
+
+  - name: services
+    label: Services
+    path: src/pages/services
+    type: collection
+    format: mdx
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        default: "@layouts/MarkdownServiceLayout.astro"
+        widget: hidden
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: string
+      - name: image
+        label: Featured Image
+        type: image
+      - name: body
+        label: Content
+        type: rich-text
+        required: true
+
+  - name: training
+    label: Training
+    path: src/pages/training
+    type: collection
+    format: mdx
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        default: "@layouts/MarkdownTrainingLayout.astro"
+        widget: hidden
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: string
+      - name: image
+        label: Featured Image
+        type: image
+      - name: date
+        label: Workshop Date
+        type: date
+      - name: body
+        label: Content
+        type: rich-text
+        required: true
+
+media:
+  input: src/content/images
+  output: /content/images
