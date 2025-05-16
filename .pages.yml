@@ -3,13 +3,12 @@ content:
     label: Projects
     path: src/pages/projects
     type: collection
-    format: mdx
+    format: yaml-frontmatter
     fields:
       - name: layout
         label: Layout
         type: string
         default: "@layouts/MarkdownProjectLayout.astro"
-        widget: hidden
       - name: title
         label: Title
         type: string
@@ -32,13 +31,12 @@ content:
     label: Resources
     path: src/pages/resources
     type: collection
-    format: mdx
+    format: yaml-frontmatter
     fields:
       - name: layout
         label: Layout
         type: string
         default: "@layouts/MarkdownResourceLayout.astro"
-        widget: hidden
       - name: title
         label: Title
         type: string
@@ -58,13 +56,12 @@ content:
     label: Services
     path: src/pages/services
     type: collection
-    format: mdx
+    format: yaml-frontmatter
     fields:
       - name: layout
         label: Layout
         type: string
         default: "@layouts/MarkdownServiceLayout.astro"
-        widget: hidden
       - name: title
         label: Title
         type: string
@@ -84,13 +81,12 @@ content:
     label: Training
     path: src/pages/training
     type: collection
-    format: mdx
+    format: yaml-frontmatter
     fields:
       - name: layout
         label: Layout
         type: string
         default: "@layouts/MarkdownTrainingLayout.astro"
-        widget: hidden
       - name: title
         label: Title
         type: string
