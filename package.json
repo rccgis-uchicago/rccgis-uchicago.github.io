@@ -2,6 +2,9 @@
   "name": "rcc-gis",
   "type": "module",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=18.17.1"
+  },
   "private": true,
   "scripts": {
     "dev": "astro dev",
