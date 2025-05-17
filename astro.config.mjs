@@ -1,21 +1,37 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
-import icon from "astro-icon";
+import tailwind from '@astrojs/tailwind';
+import react from '@astrojs/react';
+import icon from 'astro-icon';
 
+// https://astro.build/config
 export default defineConfig({
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-      configFile: './tailwind.config.ts'
-    }),
     mdx(),
-    icon({
-      include: {
-        lucide: ['*']  // This includes all Lucide icons
-      }
-    })
+    tailwind(),
+    react(),
+    icon(),
   ],
-  site: 'https://rccgis-uchicago.github.io/site',
-  // base: '/site', // We don't need this anymore since it's included in the site URL
+  // Enable TinaCMS local mode in development
+  vite: {
+    // plugins: [
+    //   {
+    //     name: 'tina-dev-server',
+    //     configureServer: async (server) => {
+    //       if (process.env.NODE_ENV !== 'production') {
+    //         const { default: tina } = await import('./tina/__generated__/client');
+    //         return () => {
+    //           server.middlewares.use(tina.devServer);
+    //         };
+    //       }
+    //     },
+    //   },
+    // ],
+  },
+  // Image optimization settings
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+    },
+  },
 });

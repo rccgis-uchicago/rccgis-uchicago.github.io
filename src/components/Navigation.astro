@@ -1,25 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+import { resources, services, projects, mainNavItems } from '../config/navigation';
+import { getImagePath } from '../utils/images';
 
 const currentPath = Astro.url.pathname;
-
-const resources = [
-  { href: '/resources/software', label: 'Software' },
-  { href: '/resources/data', label: 'Data' },
-  { href: '/resources/labs', label: 'Lab Facilities' },
-  { href: '/resources/imagery', label: 'Imagery' }
-];
-
-const services = [
-  { href: '/services/computing', label: 'Computing Resources' },
-  { href: '/services/geocoding', label: 'Geocoding' }
-];
-
-const projects = [
-  { href: '/projects/webgis', label: 'WebGIS Projects' },
-  { href: '/projects/geoai', label: 'GeoAI Projects' }
-];
+const logoPath = getImagePath('LOGO_GIS.png');
 ---
 
 
@@ -28,7 +14,7 @@ const projects = [
     <div class="mr-4 flex items-center">
       <a href="/" class="mr-6 flex items-center space-x-2">
         <Image
-          src="https://gis.rcc.uchicago.edu/wp-content/uploads/2024/02/LOGO_GIS_New_1.png"
+          src={logoPath}
           alt="RCC GIS Logo"
           width={120}
           height={40}
@@ -93,24 +79,17 @@ const projects = [
             ))}
           </div>
         </div>
-        <a 
-          href="/training" 
-          class:list={[
-            "text-sm font-medium",
-            { "text-primary": currentPath === "/training" }
-          ]}
-        >
-          Training
-        </a>
-        <a 
-          href="/getting-started" 
-          class:list={[
-            "text-sm font-medium",
-            { "text-primary": currentPath === "/getting-started" }
-          ]}
-        >
-          Getting Started
-        </a>
+        {mainNavItems.map(({ href, label }) => (
+          <a 
+            href={href} 
+            class:list={[
+              "text-sm font-medium",
+              { "text-primary": currentPath === href }
+            ]}
+          >
+            {label}
+          </a>
+        ))}
       </nav>
     </div>
     <div class="ml-auto flex items-center space-x-4">

@@ -10,22 +10,24 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "tina": "tinacms dev -c \"astro dev\"",
+    "tina:build": "tinacms build && astro build"
   },
   "dependencies": {
-    "@astrojs/mdx": "4.2.6",
-    "@astrojs/react": "4.2.7",
+    "@astrojs/mdx": "^2.3.1",
+    "@astrojs/react": "^3.3.0",
     "@fontsource/inter": "5.0.16",
     "@iconify-json/lucide": "1.2.43",
-    "astro": "5.7.13",
+    "astro": "^4.8.2",
     "astro-icon": "1.1.4",
     "lucide-astro": "0.358.0",
-    "tinacms": "2.7.7"
+    "tinacms": "^1.6.3"
   },
   "devDependencies": {
-    "@astrojs/tailwind": "6.0.2",
+    "@astrojs/tailwind": "^5.1.0",
     "@tailwindcss/typography": "0.5.15",
-    "@tinacms/cli": "1.9.7",
+    "@tinacms/cli": "^1.5.44",
     "@types/node": "22.15.18",
     "autoprefixer": "10.4.20",
     "postcss": "8.5.3",

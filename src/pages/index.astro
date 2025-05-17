@@ -2,9 +2,10 @@
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import { getImagePath } from '../utils/images';
+// Use local image instead of remote URL
+const bgImagePath = getImagePath('bg.jpg');
 
-// Define the remote image URL
-const bgImageUrl = "https://raw.githubusercontent.com/rcc-uchicago/GIS/gh-pages/sites/all/themes/nexus_playground/images/slide-image-1.jpg";
 
 const features = [
   {
@@ -38,9 +39,10 @@ const features = [
   <!-- Hero Section -->
   <section class="relative h-[600px] w-full">
     <div class="absolute inset-0">
-      <img 
-        src={bgImageUrl}
-        alt="CyberGIS Background"
+      <Image alt="CyberGIS Background"
+        src={bgImagePath}
+        width={1920} // Add appropriate width
+        height={1080} // Add appropriate height
         class="w-full h-full object-cover brightness-[0.65] filter contrast-[1.1]"
       />
       <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70"></div>

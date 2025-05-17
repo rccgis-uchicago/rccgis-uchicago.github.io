@@ -1,49 +1,38 @@
-# build output
-dist/
-.output/
-
-# dependencies
+# Node
 node_modules/
-
-# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
-.DS_Store
-
-# IDE specific files
-.idea/
-.vscode/
-*.swp
-*.swo
-.cursorrules
-
-# Astro specific
+# Astro
+dist/
 .astro/
 
-# Local Netlify folder
-.netlify
+# TinaCMS
+tina/__generated__/
 
-# Optional npm cache directory
-.npm
+# Environment variables
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Optional eslint cache
-.eslintcache
+# IDE / Editor specific
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# Optional: TypeScript cache
-*.tsbuildinfo
-
-# Coverage directory used by tools like istanbul
-coverage/
-
-# Temporary files
-*.log
-*.tmp 
-node_modules
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
