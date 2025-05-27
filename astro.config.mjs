@@ -6,6 +6,8 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://rccgis-uchicago.github.io',
+  base: '/site',
   integrations: [
     mdx(),
     tailwind(),
@@ -34,4 +36,18 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp',
     },
   },
+  // Build output directory
+  outDir: 'dist',
+  // Enable prefetching for better performance
+  prefetch: true,
+  // Configure the build output format
+  output: 'static',
+  // Enable SPA mode for client-side routing
+  adapter: '@astrojs/netlify/functions',
+  // Configure the base path for GitHub Pages
+  build: {
+    assets: '_astro',
+  },
+  // Set the public directory for static assets
+  publicDir: 'public',
 });
