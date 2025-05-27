@@ -1,0 +1,96 @@
+---
+layout: ../../layouts/ContentLayout.astro
+title: Offline Geocoding on Midway2 | University of Chicago Geospatial Analysis
+description: Step-by-step guide for setting up and running offline geocoding using ArcPy and ArcGIS Server on the Midway2 environment at the University of Chicago. Includes installation, configuration, and usage instructions, as well as information on spatial packages and remote visualization resources.
+---
+
+# Offline Geocoding on Midway2
+
+> **Note:** This guide is specifically for the Midway2 environment at the University of Chicago.
+
+For offline geocoding, you need to run ArcPy scripts in the Midway2 environment. The following instructions will help you set up ArcPy in your home directory. ArcGIS Server needs to be located inside the user's home directory. First, download the ArcGIS Server setup and copy it to your home folder.
+
+**ArcGIS Server files:** [Download from UChicago Box](https://uchicago.box.com/s/ph58im9r9dd751zbgqq8r44fhy0ul2gu)
+
+## Installation Steps
+
+1. **Unpack the ArcGIS installation package:**
+   ```sh
+   tar xvzf ArcGIS_for_Server_Linux_xxxx_xxxxxx.tar.gz
+   ```
+2. **Increase the maximum number of open files** (required by ArcGIS for Server):
+   - See: [ArcGIS Server System Requirements](http://server.arcgis.com/en/server/10.8/install/linux/arcgis-for-server-system-requirements.htm)
+   - Log out and log back in for changes to take effect.
+3. **Install ArcGIS for Server:**
+   ```sh
+   cd ArcGISServer
+   ./Setup -m silent -l Yes -a /home/<user>/provision_file_ArcGIS_Server.prvc
+   ```
+   The installation will take several minutes.
+
+## Environment Configuration
+
+Set up your environment variables:
+```sh
+export ARCGISHOME=$HOME/arcgis/server
+```
+
+If you only need Python and ArcPy, you do not need to start the server. Note that you must use ArcGIS' own Python installation instead of the system default. Python on ArcGIS Server for Linux runs a Windows version of Python under Wine.
+
+Start the ArcGIS Python console:
+```sh
+/home/<user>/arcgis/server/tools/python
+```
+
+If this does not work, use Anaconda3:
+```sh
+module load Anaconda3/2019.03
+source activate arcpy
+```
+
+Open Python and test if `import arcpy` works.
+
+## Geocoding Example
+
+```python
+import arcpy
+from arcpy import env
+env.workspace = "home/pnsinha/Documents/Geocoding/atlanta.gdb"
+arcpy.CreateAddressLocator_geocoding(
+    "US Address - Dual Ranges",
+    "streets Primary",
+    "'Feature ID' FeatureID VISIBLE NONE;'*From Left' L_F_ADD VISIBLE NONE;'*To Left' L_T_ADD VISIBLE NONE;'*From Right' R_F_ADD VISIBLE NONE;'*To Right' R_T_ADD VISIBLE NONE;'Prefix Direction' PREFIX VISIBLE NONE;'Prefix Type' PRE_TYPE VISIBLE NONE;'*Street Name' NAME VISIBLE NONE;'Suffix Type' TYPE VISIBLE NONE;'Suffix Direction' SUFFIX VISIBLE NONE;'Left City or Place' CITYL VISIBLE NONE;'Right City or Place' CITYR VISIBLE NONE;'Left Zipcode' ZIPL VISIBLE NONE;'Right Zipcode' ZIPR VISIBLE NONE;'Left State' State_Abbr VISIBLE NONE;'Right State' State_Abbr VISIBLE NONE",
+    "Atlanta_AddressLocator",
+    "",
+    "DISABLED"
+)
+address_table = "customer"
+address_locator = "Atlanta_AddressLocator"
+address_fields = "street Address; City City; State State; ZIP zip"
+geocode_result = "geocode_result"
+arcpy.GeocodeAddresses(address_table, address_locator, address_fields, geocode_result, 'STATIC')
+```
+
+## Spatial Packages on Midway2
+
+A variety of spatial and geospatial packages are available on Midway2:
+
+- **GDAL/OGR**: Open source libraries for raster and vector data. Use `module load gdal` to access.
+- **GEOS**
+- **GrADS**
+- **Grass**
+- **PROJ.4**
+- **QGIS**
+- **R**
+- **Python 2 & 3**
+- **Julia**
+- **Matlab**
+- **Stata**
+- **SAS**
+- **IDL**
+- **PostGIS**
+
+## Remote Visualization
+
+The Remote Visualization system provides simplified access to visualization software, allowing users to visualize data from their desktops or laptops and download rendered images without transferring large data files. Supported packages include Matlab, Matplotlib, GrADS, Octave, and NetCDF applications.
+
