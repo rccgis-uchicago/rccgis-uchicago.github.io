@@ -87,6 +87,17 @@ jobs:
       - name: Install Surfer CLI
         run: npm install -g cloudron-surfer
         
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: pages-artifact
+          path: dist
+          
+      - name: List files for debugging
+        run: |
+          ls -la
+          ls -la dist/
+          
       - name: Configure and Deploy to Cloudron
         env:
           SURFER_TOKEN: ${{ secrets.SURFER_API_TOKEN }}
