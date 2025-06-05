@@ -16,6 +16,7 @@ export default defineConfig({
   },
   schema: {
     collections: [
+      // Blog Posts
       {
         name: 'post',
         label: 'Blog Posts',
@@ -49,10 +50,90 @@ export default defineConfig({
             type: 'rich-text',
             name: 'body',
             label: 'Body',
+          },
+        ],
+      },
+      // Services
+      {
+        name: 'service',
+        label: 'Services',
+        path: 'src/content/services',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'string',
+            name: 'title',
+            label: 'Title',
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: 'string',
+            name: 'description',
+            label: 'Description',
+          },
+          {
+            type: 'rich-text',
+            name: 'body',
+            label: 'Content',
             isBody: true,
           },
         ],
       },
+      // Resources
+      {
+        name: 'resource',
+        label: 'Resources',
+        path: 'src/content/resources',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'string',
+            name: 'title',
+            label: 'Title',
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: 'string',
+            name: 'description',
+            label: 'Description',
+          },
+          {
+            type: 'rich-text',
+            name: 'body',
+            label: 'Content',
+            isBody: true,
+          },
+        ],
+      },
+      // Training
+      {
+        name: 'training',
+        label: 'Training',
+        path: 'src/content/training',
+        format: 'mdx',
+        fields: [
+          {
+            type: 'string',
+            name: 'title',
+            label: 'Title',
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: 'string',
+            name: 'description',
+            label: 'Description',
+          },
+          {
+            type: 'rich-text',
+            name: 'body',
+            label: 'Content',
+            isBody: true,
+          },
+        ],
+      }
       {
         name: 'resource',
         label: 'Resources',

@@ -1,52 +1,271 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import Card from '../../components/Card.astro';
-import { Icon } from 'astro-icon/components';
+import { BookOpen, FileText, Tool, Database, HelpCircle, Map, Server, Code, Book } from 'lucide-astro';
 
-const resources = [
-  {
-    title: 'Software',
-    description: 'Access GIS software and tools',
-    icon: 'lucide:laptop',
-    href: '/resources/software'
-  },
-  {
-    title: 'Data',
-    description: 'Spatial datasets and collections',
-    icon: 'lucide:database',
-    href: '/resources/data'
-  },
-  {
-    title: 'Lab Facilities',
-    description: 'GIS workstations and facilities',
-    icon: 'lucide:monitor',
-    href: '/resources/labs'
-  },
-  {
-    title: 'Imagery',
-    description: 'Satellite and aerial imagery',
-    icon: 'lucide:image',
-    href: '/resources/imagery'
+// Get all resources from the content collection
+const resources = (await getCollection('resources'));
+
+// Get unique types and tags for filtering
+const allTypes = Array.from(new Set(resources.map(r => r.data.type).filter(Boolean)));
+const allTags = Array.from(new Set(resources.flatMap(r => r.data.tags || [])));
+
+// Get featured resources
+const featuredResources = resources.filter(r => r.data.featured).slice(0, 3);
+
+// Group resources by type
+const resourcesByType = resources.reduce((acc, resource) => {
+  const type = resource.data.type || 'other';
+  if (!acc[type]) {
+    acc[type] = [];
   }
-];
+  acc[type].push(resource);
+  return acc;
+}, {});
+
+// Get icon component for resource type
+const getTypeIcon = (type) => {
+  const icons = {
+    'tutorial': BookOpen,
+    'documentation': FileText,
+    'tool': Tool,
+    'dataset': Database,
+    'software': Code,
+    'facilities': Server,
+    'gis': Map,
+    'guide': Book
+  };
+  return icons[type] || HelpCircle;
+};
+
+// Get display name for resource type
+const getTypeDisplayName = (type) => {
+  const names = {
+    'tutorial': 'Tutorials',
+    'documentation': 'Documentation',
+    'tool': 'Tools',
+    'dataset': 'Datasets',
+    'software': 'Software',
+    'facilities': 'Lab Facilities',
+    'gis': 'GIS Resources',
+    'guide': 'Guides'
+  };
+  return names[type] || type.charAt(0).toUpperCase() + type.slice(1);
+};
 ---
 
-<Layout title="GIS Resources">
-  <div class="container mx-auto px-4 py-16">
-    <h1 class="text-4xl font-bold mb-8">GIS Resources</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {resources.map(({ title, description, icon, href }) => (
-        <Card title={title}>
-          <Icon name={icon} class="h-8 w-8 mb-4 text-primary" />
-          <p class="text-muted-foreground mb-4">{description}</p>
-          <a 
-            href={href}
-            class="text-primary hover:underline"
-          >
-            Learn more →
-          </a>
-        </Card>
-      ))}
+<Layout title="GIS Resources" description="Comprehensive collection of GIS resources, tutorials, tools, and datasets for researchers and students.">
+  <div class="container mx-auto px-4 py-12">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        GIS Resources
+      </h1>
+      <p class="max-w-3xl mx-auto text-xl text-muted-foreground">
+        Discover tutorials, tools, datasets, and documentation to support your GIS research and learning.
+      </p>
     </div>
+
+    {featuredResources.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold text-foreground">Featured Resources</h2>
+          <span class="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary">
+            {featuredResources.length} featured
+          </span>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {featuredResources.map((resource) => {
+            const IconComponent = getTypeIcon(resource.data.type);
+            const typeName = getTypeDisplayName(resource.data.type);
+            
+            return (
+              <a 
+                href={`/resources/${resource.slug}`}
+                class="group flex flex-col h-full rounded-lg border border-border overflow-hidden bg-card hover:border-primary/20 transition-all duration-200 hover:shadow-lg"
+              >
+                <div class="p-6 flex-1 flex flex-col">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-2">
+                      <div class="p-2 rounded-lg bg-primary/10 text-primary">
+                        <IconComponent class="h-5 w-5" />
+                      </div>
+                      <span class="text-sm font-medium text-muted-foreground">
+                        {typeName}
+                      </span>
+                    </div>
+                    {resource.data.featured && (
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                        Featured
+                      </span>
+                    )}
+                  </div>
+                  <h3 class="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-3 line-clamp-2">
+                    {resource.data.title}
+                  </h3>
+                  <p class="text-muted-foreground mb-4 line-clamp-3 flex-grow">
+                    {resource.data.description}
+                  </p>
+                  {resource.data.tags && resource.data.tags.length > 0 && (
+                    <div class="mt-auto pt-4 border-t border-border/50">
+                      <div class="flex flex-wrap gap-2">
+                        {resource.data.tags.slice(0, 3).map(tag => (
+                          <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-secondary text-secondary-foreground">
+                            {tag}
+                          </span>
+                        ))}
+                        {resource.data.tags.length > 3 && (
+                          <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-secondary text-secondary-foreground">
+                            +{resource.data.tags.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div class="px-6 py-4 bg-muted/30 border-t border-border">
+                  <div class="flex items-center text-sm font-medium text-primary group-hover:underline">
+                    <span>View details</span>
+                    <svg class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )}
+
+    <section class="mb-16">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
+        <h2 class="text-2xl font-bold text-foreground">Browse by Category</h2>
+        {allTags.length > 0 && (
+          <div class="mt-4 sm:mt-0 w-full sm:w-auto">
+            <label for="tag-filter" class="sr-only">Filter by tag</label>
+            <select 
+              id="tag-filter"
+              class="block w-full pl-3 pr-10 py-2 text-sm border border-input rounded-md bg-background focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-none"
+            >
+              <option value="">All Tags</option>
+              {allTags.map(tag => (
+                <option value={tag} class="bg-background text-foreground">{tag}</option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
+
+      {Object.entries(resourcesByType).map(([type, typeResources]) => {
+        const IconComponent = getTypeIcon(type);
+        const typeName = getTypeDisplayName(type);
+        
+        return (
+          <div class="mb-12" data-type={type}>
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-xl font-semibold text-foreground flex items-center">
+                <div class="p-1.5 mr-2 rounded-md bg-primary/10 text-primary">
+                  <IconComponent class="h-5 w-5" />
+                </div>
+                {typeName}
+                <span class="ml-2 px-2 py-0.5 text-xs font-medium rounded-full bg-secondary text-secondary-foreground">
+                  {typeResources.length}
+                </span>
+              </h3>
+              {typeResources.length > 4 && (
+                <a 
+                  href={`/resources?type=${type}`}
+                  class="text-sm font-medium text-primary hover:underline flex items-center"
+                >
+                  View all
+                  <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              )}
+            </div>
+            
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {typeResources.slice(0, 4).map(resource => (
+                <a 
+                  href={`/resources/${resource.slug}`}
+                  class="group flex flex-col h-full p-5 rounded-lg border border-border bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200"
+                  data-tags={resource.data.tags?.join(',') || ''}
+                >
+                  <h4 class="text-lg font-semibold text-foreground mb-2 group-hover:text-primary line-clamp-2">
+                    {resource.data.title}
+                  </h4>
+                  <p class="text-muted-foreground text-sm mb-4 line-clamp-2">
+                    {resource.data.description}
+                  </p>
+                  <div class="mt-auto pt-3 border-t border-border/50 flex items-center text-sm font-medium text-primary">
+                    <span>Learn more</span>
+                    <svg class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+              ))}
+            </div>
+            
+            {typeResources.length > 4 && (
+              <div class="mt-4 text-center md:text-right">
+                <a 
+                  href={`/resources?type=${type}`}
+                  class="inline-flex items-center text-sm font-medium text-primary hover:underline"
+                >
+                  View all {typeResources.length} {typeName.toLowerCase()} resources
+                  <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            )}
+            
+            {typeResources.length === 0 && (
+              <div class="p-6 text-center rounded-lg border border-dashed border-border bg-muted/30">
+                <p class="text-muted-foreground">No {typeName.toLowerCase()} resources found.</p>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </section>
   </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tagFilter = document.getElementById('tag-filter');
+      if (!tagFilter) return;
+
+      const resourceItems = document.querySelectorAll('[data-tags]');
+      
+      tagFilter.addEventListener('change', (e) => {
+        const selectedTag = e.target.value;
+        
+        resourceItems.forEach(item => {
+          const tags = item.getAttribute('data-tags');
+          if (!selectedTag || (tags && tags.includes(selectedTag))) {
+            item.style.display = 'flex';
+            
+            // Show parent category if it contains matching items
+            const category = item.closest('[data-type]');
+            if (category) {
+              category.style.display = 'block';
+            }
+          } else {
+            item.style.display = 'none';
+            
+            // Hide category if it has no visible items
+            const category = item.closest('[data-type]');
+            if (category) {
+              const hasVisibleItems = Array.from(category.querySelectorAll('[data-tags]'))
+                .some(el => el.style.display !== 'none');
+              category.style.display = hasVisibleItems ? 'block' : 'none';
+            }
+          }
+        });
+      });
+    });
+  </script>
 </Layout> 

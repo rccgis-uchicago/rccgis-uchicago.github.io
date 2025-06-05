@@ -1,25 +1,219 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { BookOpen, FileText, Tool, Database, HelpCircle, Map, Server, Code, Book, Calendar, Tag, ArrowRight } from 'lucide-astro';
 
 export async function getStaticPaths() {
   const resources = await getCollection('resources');
-  return resources.map(entry => ({
-    params: { slug: entry.slug },
-    props: { entry },
+  return resources.map(resource => ({
+    params: { slug: resource.slug },
+    props: { resource },
   }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { resource } = Astro.props;
+const { Content } = await resource.render();
+
+// Get icon component for resource type
+const getTypeIcon = (type) => {
+  const icons = {
+    'tutorial': BookOpen,
+    'documentation': FileText,
+    'tool': Tool,
+    'dataset': Database,
+    'software': Code,
+    'facilities': Server,
+    'gis': Map,
+    'guide': Book
+  };
+  return icons[type] || HelpCircle;
+};
+
+// Get display name for resource type
+const getTypeDisplayName = (type) => {
+  const names = {
+    'tutorial': 'Tutorial',
+    'documentation': 'Documentation',
+    'tool': 'Tool',
+    'dataset': 'Dataset',
+    'software': 'Software',
+    'facilities': 'Lab Facility',
+    'gis': 'GIS Resource',
+    'guide': 'Guide'
+  };
+  return names[type] || type.charAt(0).toUpperCase() + type.slice(1);
+};
+
+// Get related resources (same type or tags)
+const allResources = await getCollection('resources');
+const relatedResources = allResources
+  .filter(r => 
+    r.slug !== resource.slug && 
+    (r.data.type === resource.data.type || 
+     (resource.data.tags && r.data.tags && 
+      resource.data.tags.some(tag => r.data.tags.includes(tag)))))
+  .slice(0, 3);
+
+// Format date
+const formatDate = (dateString) => {
+  if (!dateString) return null;
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
+// Get icon component for current resource type
+const ResourceTypeIcon = getTypeIcon(resource.data.type);
+const typeName = getTypeDisplayName(resource.data.type);
+const formattedDate = formatDate(resource.data.updatedAt || resource.data.pubDate);
 ---
 
-<Layout title={entry.data.title}>
-  <main>
-    <article>
-      <h1>{entry.data.title}</h1>
-      {entry.data.description && <p>{entry.data.description}</p>}
-      <Content />
-    </article>
-  </main>
-</Layout> 
+<Layout 
+  title={resource.data.title} 
+  description={resource.data.description}
+  class="bg-muted/20"
+>
+  <article class="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      {/* Header Section */}
+      <header class="mb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div class="flex items-center space-x-3">
+            <div class="p-2 rounded-lg bg-primary/10 text-primary">
+              <ResourceTypeIcon class="h-5 w-5" />
+            </div>
+            <span class="text-sm font-medium text-muted-foreground">
+              {typeName}
+            </span>
+          </div>
+          
+          {formattedDate && (
+            <div class="flex items-center text-sm text-muted-foreground">
+              <Calendar class="mr-1.5 h-4 w-4 flex-shrink-0" />
+              <span>Last updated: {formattedDate}</span>
+            </div>
+          )}
+        </div>
+        
+        <h1 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-6">
+          {resource.data.title}
+        </h1>
+        
+        {resource.data.description && (
+          <p class="text-lg text-muted-foreground mb-6">
+            {resource.data.description}
+          </p>
+        )}
+        
+        {resource.data.tags && resource.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-4">
+            {resource.data.tags.map(tag => (
+              <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-secondary text-secondary-foreground">
+                <Tag class="mr-1.5 h-3 w-3" />
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </header>
+      
+      {/* Main Content */}
+      <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-primary hover:prose-a:text-primary/80 prose-code:before:hidden prose-code:after:hidden prose-code:bg-muted/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-img:rounded-lg prose-img:shadow-md">
+        <Content />
+      </div>
+      
+      {/* Author Information */}
+      {resource.data.author && (
+        <div class="mt-12 pt-8 border-t border-border">
+          <div class="flex items-center">
+            <div class="h-12 w-12 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
+              <span class="text-lg font-medium">
+                {resource.data.author.split(' ').map(n => n[0]).join('')}
+              </span>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-foreground">
+                {resource.data.author}
+              </p>
+              <p class="text-sm text-muted-foreground">
+                {resource.data.authorTitle || 'GIS Specialist'}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+    
+    {/* Related Resources */}
+    {relatedResources.length > 0 && (
+      <section class="mt-16 pt-12 border-t border-border">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold text-foreground">Related Resources</h2>
+          <a href="/resources" class="text-sm font-medium text-primary hover:underline flex items-center">
+            View all resources
+            <ArrowRight class="ml-1 h-4 w-4" />
+          </a>
+        </div>
+        
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {relatedResources.map(related => {
+            const RelatedIcon = getTypeIcon(related.data.type);
+            const relatedTypeName = getTypeDisplayName(related.data.type);
+            
+            return (
+              <a 
+                href={`/resources/${related.slug}`}
+                class="group flex flex-col h-full p-5 rounded-lg border border-border bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200"
+              >
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center space-x-2">
+                    <div class="p-1.5 rounded-md bg-primary/10 text-primary">
+                      <RelatedIcon class="h-4 w-4" />
+                    </div>
+                    <span class="text-xs font-medium text-muted-foreground">
+                      {relatedTypeName}
+                    </span>
+                  </div>
+                  {related.data.featured && (
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                      Featured
+                    </span>
+                  )}
+                </div>
+                
+                <h3 class="text-lg font-semibold text-foreground mb-2 group-hover:text-primary line-clamp-2">
+                  {related.data.title}
+                </h3>
+                <p class="text-muted-foreground text-sm mb-4 line-clamp-2">
+                  {related.data.description}
+                </p>
+                <div class="mt-auto pt-3 border-t border-border/50 flex items-center text-sm font-medium text-primary">
+                  <span>View details</span>
+                  <svg class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )}
+    
+    {/* Back to Resources */}
+    <div class="mt-12 text-center">
+      <a 
+        href="/resources" 
+        class="inline-flex items-center text-sm font-medium text-primary hover:underline"
+      >
+        <svg class="mr-1 h-4 w-4 -rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+        Back to all resources
+      </a>
+    </div>
+  </article>
+</Layout>
