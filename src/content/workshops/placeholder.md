@@ -4,7 +4,7 @@ description: "This is a placeholder for upcoming workshop content. Replace or ad
 pubDate: 2025-06-05
 date: 2025-06-05
 duration: "TBD"
-level: "TBD"
+level: "beginner"
 ---
 
 # Workshops Coming Soon
