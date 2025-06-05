@@ -36,3 +36,6 @@ tina/__generated__/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Project specific
+website_reference
