@@ -90,6 +90,7 @@ jobs:
       - name: Configure and Deploy to Cloudron
         env:
           SURFER_TOKEN: ${{ secrets.SURFER_API_TOKEN }}
+          SURFER_SERVER: ${{ secrets.SURFER_SERVER }}
         run: |
-          surfer config --server ${{ env.SURFER_SERVER }} --token $SURFER_TOKEN
+          surfer config --server $SURFER_SERVER --token $SURFER_TOKEN
           surfer put dist/* /
