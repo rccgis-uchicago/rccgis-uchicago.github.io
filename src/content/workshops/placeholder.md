@@ -2,6 +2,9 @@
 title: "Workshop Placeholder"
 description: "This is a placeholder for upcoming workshop content. Replace or add workshop markdown files here to populate the workshops section."
 pubDate: 2025-06-05
+date: 2025-06-05
+duration: "TBD"
+level: "TBD"
 ---
 
 # Workshops Coming Soon
