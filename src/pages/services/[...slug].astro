@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+// Get all services from the content collection
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map(service => {
+    // Generate slug from filename if not provided in frontmatter
+    const slug = service.slug || service.id.replace(/\.[^/.]+$/, '');
+    return {
+      params: { slug },
+      props: { service },
+    };
+  });
+}
+
+const { service } = Astro.props;
+const { Content } = await service.render();
+
+// Get related services based on tags
+const getRelatedServices = async (currentSlug, tags = []) => {
+  if (!tags.length) return [];
+  
+  const allServices = await getCollection('services');
+  return allServices
+    .filter(s => {
+      const serviceSlug = s.slug || s.id.replace(/\.[^/.]+$/, '');
+      return serviceSlug !== currentSlug && 
+             s.data.tags?.some(tag => tags.includes(tag));
+    })
+    .slice(0, 3); // Limit to 3 related services
+};
+
+// Get related services for the current service
+const relatedServices = await getRelatedServices(
+  service.slug || service.id.replace(/\.[^/.]+$/, ''),
+  service.data.tags || []
+);
+---
+
+<Layout 
+  title={service.data.title} 
+  description={service.data.description || service.data.summary?.substring(0, 160) + '...'}
+>
+  <article class="max-w-4xl mx-auto py-8 px-4">
+    {/* Header with Icon, Title, and Description */}
+    <div class="mb-12 text-center">
+      {service.data.icon && (
+        <div class="mx-auto w-20 h-20 flex items-center justify-center bg-primary/10 rounded-2xl mb-6">
+          <span class="text-4xl" set:html={service.data.icon}></span>
+        </div>
+      )}
+      <h1 class="text-4xl font-bold mb-4">{service.data.title}</h1>
+      {service.data.description && (
+        <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+          {service.data.description}
+        </p>
+      )}
+      
+      {/* Featured Badge */}
+      {service.data.featured && (
+        <span class="inline-block mt-4 px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary">
+          Featured Service
+        </span>
+      )}
+    </div>
+    
+    {/* Main Content */}
+    <div class="prose prose-lg max-w-none mx-auto">
+      <Content />
+    </div>
+    
+    {/* Tags */}
+    {service.data.tags && service.data.tags.length > 0 && (
+      <div class="mt-12 pt-8 border-t border-border">
+        <h3 class="text-sm font-medium text-muted-foreground mb-4">Tags</h3>
+        <div class="flex flex-wrap gap-2">
+          {service.data.tags.map((tag, index) => (
+            <a 
+              key={index}
+              href={`/services?tag=${encodeURIComponent(tag)}`}
+              class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
+            >
+              {tag}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+    
+    {/* Related Services */}
+    {relatedServices.length > 0 && (
+      <div class="mt-12 pt-8 border-t border-border">
+        <h3 class="text-xl font-semibold mb-6">Related Services</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {relatedServices.map(relatedService => {
+            const slug = relatedService.slug || relatedService.id.replace(/\.[^/.]+$/, '');
+            return (
+              <a 
+                href={`/services/${slug}`}
+                class="block p-6 rounded-lg border border-border hover:border-primary/50 transition-colors"
+              >
+                {relatedService.data.icon && (
+                  <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-xl mb-4">
+                    <span class="text-2xl" set:html={relatedService.data.icon}></span>
+                  </div>
+                )}
+                <h4 class="text-lg font-medium mb-2">{relatedService.data.title}</h4>
+                {relatedService.data.description && (
+                  <p class="text-muted-foreground text-sm line-clamp-2">
+                    {relatedService.data.description}
+                  </p>
+                )}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    )}
+  </article>
+</Layout>

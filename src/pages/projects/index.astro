@@ -1,0 +1,269 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { Card } from '../../components/Card.astro';
+
+// Get all projects from the content collection
+const projects = (await getCollection('projects'))
+  .sort((a, b) => {
+    const dateA = a.data.startDate ? new Date(a.data.startDate).getTime() : 0;
+    const dateB = b.data.startDate ? new Date(b.data.startDate).getTime() : 0;
+    return dateB - dateA; // Sort by most recent first
+  });
+
+// Get unique tags for filtering
+const allTags = Array.from(new Set(projects.flatMap(project => project.data.tags || [])));
+
+// Function to get the first image from project content
+const getFirstImageUrl = (content) => {
+  const imgMatch = content.match(/!\[.*?\]\((.*?)\)/);
+  return imgMatch ? imgMatch[1] : null;
+};
+
+// Function to get excerpt from content
+const getExcerpt = (content, maxLength = 120) => {
+  // Remove markdown images and headings
+  const text = content
+    .replace(/!\[.*?\]\(.*?\)/g, '')
+    .replace(/^#+.*$/gm, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .trim();
+  
+  if (text.length <= maxLength) return text;
+  return text.substring(0, text.lastIndexOf(' ', maxLength)) + '...';
+};
+---
+
+<Layout 
+  title="Our Projects" 
+  description="Explore our portfolio of innovative GIS and spatial analysis projects that demonstrate our expertise in geospatial technologies."
+>
+  <div class="container mx-auto px-4 py-12">
+    {/* Hero Section */}
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        Our Projects
+      </h1>
+      <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+        Discover how we're applying GIS, spatial analysis, and geospatial technologies to solve complex real-world challenges.
+      </p>
+    </div>
+
+    {/* Tags Filter */}
+    {allTags.length > 0 && (
+      <div class="mb-12">
+        <div class="flex flex-wrap justify-center gap-2">
+          <button 
+            class="px-4 py-2 rounded-full text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            data-filter="all"
+          >
+            All Projects
+          </button>
+          {allTags.map((tag, index) => (
+            <button 
+              key={index}
+              class="px-4 py-2 rounded-full text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
+              data-filter={tag}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* Projects Grid */}
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="projects-container">
+      {projects.map(project => {
+        const slug = project.slug || project.id.replace(/\.[^/.]+$/, '');
+        const excerpt = getExcerpt(project.body);
+        const imageUrl = project.data.image || getFirstImageUrl(project.body);
+        
+        return (
+          <article 
+            key={slug}
+            class="group flex flex-col h-full overflow-hidden rounded-xl border border-border hover:shadow-lg transition-all duration-300"
+            data-tags={project.data.tags?.join(',') || ''}
+          >
+            <a href={`/projects/${slug}`} class="block flex-1 flex flex-col">
+              {/* Project Image */}
+              <div class="h-48 bg-muted/30 overflow-hidden">
+                {imageUrl ? (
+                  <img 
+                    src={imageUrl} 
+                    alt={project.data.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center bg-muted">
+                    <svg class="w-12 h-12 text-muted-foreground/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                )}
+              </div>
+              
+              {/* Project Content */}
+              <div class="p-6 flex-1 flex flex-col">
+                <div class="flex-1">
+                  <h3 class="text-xl font-semibold text-foreground mb-2">
+                    {project.data.title}
+                  </h3>
+                  
+                  {/* Project Metadata */}
+                  <div class="flex flex-wrap gap-3 text-sm text-muted-foreground mb-3">
+                    {project.data.client && (
+                      <div class="flex items-center">
+                        <span class="font-medium">Client:</span> {project.data.client}
+                      </div>
+                    )}
+                    {project.data.status && (
+                      <div class="flex items-center">
+                        <span class="font-medium">Status:</span> {project.data.status}
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Project Description */}
+                  {excerpt && (
+                    <p class="text-muted-foreground line-clamp-3">
+                      {excerpt}
+                    </p>
+                  )}
+                  
+                  {/* Project Tags */}
+                  {project.data.tags && project.data.tags.length > 0 && (
+                    <div class="mt-3 flex flex-wrap gap-1">
+                      {project.data.tags.slice(0, 3).map((tag, index) => (
+                        <span 
+                          key={index}
+                          class="px-2 py-0.5 text-xs rounded-full bg-muted text-muted-foreground"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {project.data.tags.length > 3 && (
+                        <span class="px-2 py-0.5 text-xs rounded-full bg-muted text-muted-foreground">
+                          +{project.data.tags.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </a>
+          
+          {project.data.links && project.data.links.length > 0 && (
+            <div class="px-6 pb-6 pt-0">
+              <div class="flex flex-wrap gap-2">
+                {project.data.links.map(link => (
+                  <a 
+                    href={link.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50"
+                    onclick="event.stopPropagation()"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+    </div>
+    
+    {/* Empty State */}
+    {projects.length === 0 && (
+      <div class="text-center py-12">
+        <svg class="mx-auto h-12 w-12 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h3 class="mt-2 text-sm font-medium text-foreground">No projects found</h3>
+        <p class="mt-1 text-sm text-muted-foreground">Check back later for updates.</p>
+      </div>
+    )}
+    
+    {/* Filter Script */}
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const filterButtons = document.querySelectorAll('[data-filter]');
+        const projects = document.querySelectorAll('#projects-container > article');
+        const projectCount = document.getElementById('project-count');
+        
+        // Update project count
+        if (projectCount) {
+          projectCount.textContent = projects.length;
+        }
+
+        filterButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            let visibleCount = 0;
+            
+            // Update active button styles
+            filterButtons.forEach(btn => {
+              if (btn === button) {
+                btn.classList.remove('bg-muted', 'hover:bg-muted/80');
+                btn.classList.add('bg-primary', 'text-primary-foreground', 'hover:bg-primary/90');
+              } else {
+                btn.classList.remove('bg-primary', 'text-primary-foreground', 'hover:bg-primary/90');
+                btn.classList.add('bg-muted', 'hover:bg-muted/80');
+              }
+            });
+            
+            // Filter projects
+            projects.forEach(project => {
+              const tags = project.getAttribute('data-tags') || '';
+              if (filter === 'all' || tags.includes(filter)) {
+                project.classList.remove('hidden');
+                visibleCount++;
+              } else {
+                project.classList.add('hidden');
+              }
+            });
+            
+            // Update URL without page reload
+            const url = new URL(window.location);
+            if (filter === 'all') {
+              url.searchParams.delete('filter');
+            } else {
+              url.searchParams.set('filter', filter);
+            }
+            window.history.pushState({}, '', url);
+            
+            // Update project count
+            if (projectCount) {
+              projectCount.textContent = visibleCount;
+            }
+            
+            // Show empty state if no projects match
+            const emptyState = document.getElementById('empty-state');
+            if (emptyState) {
+              if (visibleCount === 0) {
+                emptyState.classList.remove('hidden');
+              } else {
+                emptyState.classList.add('hidden');
+              }
+            }
+          });
+        });
+        
+        // Check for filter in URL on page load
+        const urlParams = new URLSearchParams(window.location.search);
+        const filterParam = urlParams.get('filter');
+        if (filterParam) {
+          const button = document.querySelector(`[data-filter="${filterParam}"]`);
+          if (button) {
+            button.click();
+          }
+        } else if (filterButtons.length > 0) {
+          // Click the 'All' button by default
+          filterButtons[0].click();
+        }
+      });
+    </script>
+  </div>
+</Layout>

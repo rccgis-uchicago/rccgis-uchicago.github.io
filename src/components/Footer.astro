@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
-import { resources, services } from '../config/navigation';
+import { Mail, MapPin, Phone, ExternalLink, Twitter, Github } from 'lucide-astro';
+import { resourcesNav, servicesNav } from '../config/navigation';
 import { getImagePath } from '../utils/images';
 
-// Add training to the services list for the footer
-const footerServices = [...services, { href: '/training', label: 'Training' }];
+// Use services navigation for the footer
+const footerServices = [...servicesNav];
 const logoPath = getImagePath('LOGO_GIS.png');
 ---
 
@@ -22,16 +22,25 @@ const logoPath = getImagePath('LOGO_GIS.png');
             class="h-8 w-auto"
           />
         </div>
-        <p class="text-sm text-muted-foreground">
-          Research Computing Center<br />
-          The University of Chicago<br />
-          Regenstein Library Room 216
-        </p>
+        <div class="space-y-2">
+          <div class="flex items-center">
+            <Mail class="h-5 w-5 mr-2 text-muted-foreground" />
+            <a href="mailto:rcc-gis@uchicago.edu" class="text-sm text-muted-foreground hover:text-foreground">rcc-gis@uchicago.edu</a>
+          </div>
+          <div class="flex items-center">
+            <MapPin class="h-5 w-5 mr-2 text-muted-foreground" />
+            <span class="text-sm text-muted-foreground">Regenstein Library, Room 216</span>
+          </div>
+          <div class="flex items-center">
+            <Phone class="h-5 w-5 mr-2 text-muted-foreground" />
+            <a href="tel:+17737029474" class="text-sm text-muted-foreground hover:text-foreground">(773) 702-9474</a>
+          </div>
+        </div>
       </div>
       <div>
         <h3 class="font-semibold mb-4">Resources</h3>
         <ul class="space-y-2">
-          {resources.map(({ href, label }) => (
+          {resourcesNav.map(({ href, label }) => (
             <li>
               <a href={href} class="text-sm text-muted-foreground hover:text-foreground">
                 {label}
@@ -39,6 +48,19 @@ const logoPath = getImagePath('LOGO_GIS.png');
             </li>
           ))}
         </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-4">Follow Us</h3>
+        <div class="flex space-x-4">
+          <a href="https://twitter.com/uchicago_rcc" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-foreground">
+            <span class="sr-only">Twitter</span>
+            <Twitter class="h-5 w-5" />
+          </a>
+          <a href="https://github.com/rcc-uchicago" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-foreground">
+            <span class="sr-only">GitHub</span>
+            <Github class="h-5 w-5" />
+          </a>
+        </div>
       </div>
       <div>
         <h3 class="font-semibold mb-4">Services</h3>
@@ -56,14 +78,6 @@ const logoPath = getImagePath('LOGO_GIS.png');
         <h3 class="font-semibold mb-4">Contact</h3>
         <ul class="space-y-2">
           <li>
-            <a
-              href="mailto:gis-help@rcc.uchicago.edu"
-              class="text-sm text-muted-foreground hover:text-foreground"
-            >
-              gis-help@rcc.uchicago.edu
-            </a>
-          </li>
-          <li>
             <a href="/contact" class="text-sm text-muted-foreground hover:text-foreground">
               Get Support
             </a>
@@ -79,7 +93,7 @@ const logoPath = getImagePath('LOGO_GIS.png');
       </div>
     </div>
     <div class="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-      <p>© {new Date().getFullYear()} The University of Chicago. All rights reserved.</p>
+      <p> {new Date().getFullYear()} The University of Chicago. All rights reserved.</p>
     </div>
   </div>
 </footer>

@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const workshops = await getCollection('workshops');
+  return workshops.map(workshop => ({
+    params: { slug: workshop.slug },
+    props: { workshop },
+  }));
+}
+
+const { workshop } = Astro.props;
+const { Content } = await workshop.render();
+---
+
+<Layout title={workshop.data.title} description={workshop.data.description}>
+  <article class="max-w-4xl mx-auto py-8 px-4">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold mb-2">{workshop.data.title}</h1>
+      {workshop.data.instructor && (
+        <p class="text-gray-600">Instructor: {workshop.data.instructor}</p>
+      )}
+      {workshop.data.date && (
+        <p class="text-gray-600">
+          {new Date(workshop.data.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </p>
+      )}
+      {workshop.data.tags && workshop.data.tags.length > 0 && (
+        <div class="mt-2 flex flex-wrap gap-2">
+          {workshop.data.tags.map(tag => (
+            <span class="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+    
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+  </article>
+</Layout>

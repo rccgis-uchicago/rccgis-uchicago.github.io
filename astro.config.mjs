@@ -2,17 +2,18 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
-import icon from 'astro-icon';
 
 // https://astro.build/config
-export default defineConfig({
+export default defineConfig(() => ({
   site: 'https://rccgis-uchicago.github.io',
-  base: '/site',
+  base: '/',
   integrations: [
-    mdx(),
-    tailwind(),
     react(),
-    icon(),
+    mdx({
+      remarkPlugins: [],
+      rehypePlugins: [],
+    }),
+    tailwind(),
   ],
   // Enable TinaCMS local mode in development
   vite: {
@@ -30,6 +31,20 @@ export default defineConfig({
     //   },
     // ],
   },
+  markdown: {
+    // Enable GitHub-flavored markdown
+    gfm: true,
+    // Enable syntax highlighting
+    syntaxHighlight: 'shiki',
+    shikiConfig: {
+      theme: 'github-dark',
+      wrap: true,
+    },
+  },
+  // Enable MDX support
+  experimental: {
+    mdxRs: true,
+  },
   // Image optimization settings
   image: {
     service: {
@@ -40,14 +55,16 @@ export default defineConfig({
   outDir: 'dist',
   // Enable prefetching for better performance
   prefetch: true,
-  // Configure the build output format
-  output: 'static',
-  // Enable SPA mode for client-side routing
-  adapter: '@astrojs/netlify/functions',
+  // Enable hybrid rendering mode for client-side routing
+  adapter: {
+    name: '@astrojs/netlify/functions',
+    functionPerRoute: false
+  },
+  output: 'server',
   // Configure the base path for GitHub Pages
   build: {
     assets: '_astro',
   },
   // Set the public directory for static assets
   publicDir: 'public',
-});
+}));

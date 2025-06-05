@@ -1,0 +1,117 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+// Get all projects from the content collection
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => {
+    // Generate slug from filename if not provided in frontmatter
+    const slug = project.slug || project.id.replace(/\.[^/.]+$/, '');
+    return {
+      params: { slug },
+      props: { project },
+    };
+  });
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+
+// Format date for display
+const formatDate = (dateString) => {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long'
+  });
+};
+---
+
+<Layout title={project.data.title} description={project.data.description}>
+  <article class="max-w-5xl mx-auto py-8 px-4">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold mb-4">{project.data.title}</h1>
+      
+      {/* Project Metadata */}
+      <div class="flex flex-wrap gap-4 text-muted-foreground text-sm mb-6">
+        {project.data.client && (
+          <div class="flex items-center">
+            <span class="font-medium mr-1">Client:</span> {project.data.client}
+          </div>
+        )}
+        {project.data.status && (
+          <div class="flex items-center">
+            <span class="font-medium mr-1">Status:</span> 
+            <span class="capitalize">{project.data.status}</span>
+          </div>
+        )}
+        {project.data.startDate && (
+          <div class="flex items-center">
+            <span class="font-medium mr-1">Date:</span>
+            {formatDate(project.data.startDate)}
+            {project.data.endDate && ` - ${formatDate(project.data.endDate)}`}
+          </div>
+        )}
+      </div>
+      
+      {/* Tags */}
+      {project.data.tags && project.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-6">
+          {project.data.tags.map((tag, index) => (
+            <span 
+              key={index}
+              class="px-3 py-1 text-xs rounded-full bg-primary/10 text-primary font-medium"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+      
+      {/* Featured Image */}
+      {project.data.image && (
+        <div class="mb-8 rounded-lg overflow-hidden shadow-lg">
+          <img 
+            src={project.data.image} 
+            alt={project.data.title}
+            class="w-full h-auto object-cover"
+          />
+        </div>
+      )}
+    </div>
+    
+    {project.data.image && (
+      <div class="mb-8 rounded-lg overflow-hidden">
+        <img 
+          src={project.data.image} 
+          alt={project.data.title}
+          class="w-full h-auto max-h-96 object-cover"
+        />
+      </div>
+    )}
+    
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+    
+    {project.data.links && project.data.links.length > 0 && (
+      <div class="mt-8 pt-6 border-t border-gray-200">
+        <h3 class="text-lg font-medium mb-4">Project Links</h3>
+        <div class="flex flex-wrap gap-3">
+          {project.data.links.map(link => (
+            <a 
+              href={link.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </article>
+</Layout>

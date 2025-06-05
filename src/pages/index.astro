@@ -1,33 +1,41 @@
 ---
-import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import { getImagePath } from '../utils/images';
+
 // Use local image instead of remote URL
 const bgImagePath = getImagePath('bg.jpg');
+
+// SVG Icons
+const icons = {
+  map: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>`,
+  database: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg>`,
+  school: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22v-4a2 2 0 1 0-4 0v4"></path><path d="m18 10 4-2-8-4-8 4 4 2"></path><path d="M18 5v9"></path><path d="m6 12 8 4 7-3v-5"></path><path d="m4 17 6 3 6-3v-3"></path></svg>`,
+  users: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
+};
 
 
 const features = [
   {
-    icon: 'lucide:map',
+    icon: 'map',
     title: 'GIS Software',
     description: 'Access ArcGIS Pro, QGIS, and specialized tools',
     href: '/resources/software'
   },
   {
-    icon: 'lucide:database',
+    icon: 'database',
     title: 'Data Resources',
     description: 'Chicago GIS data portal and spatial datasets',
     href: '/resources/data'
   },
   {
-    icon: 'lucide:school',
-    title: 'Training',
-    description: 'GIS workshops and self-paced tutorials',
-    href: '/training'
+    icon: 'school',
+    title: 'Workshops',
+    description: 'GIS workshops and learning resources',
+    href: '/workshops'
   },
   {
-    icon: 'lucide:users',
+    icon: 'users',
     title: 'Support',
     description: 'Expert consultation and technical assistance',
     href: '/contact'
@@ -82,7 +90,7 @@ const features = [
           href={href}
           class="group block p-6 bg-card hover:shadow-lg transition-shadow rounded-lg border"
         >
-          <Icon name={icon} class="h-6 w-6 mb-4" />
+          <span class="h-6 w-6 mb-4 text-primary" set:html={icons[icon]} />
           <h3 class="text-xl font-semibold mb-2">{title}</h3>
           <p class="text-muted-foreground">{description}</p>
         </a>
