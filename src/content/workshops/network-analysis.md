@@ -2,6 +2,8 @@
 title: "Network Analysis and Visualization with Python"
 description: "Learn the fundamentals of network analysis and visualization using Python and popular libraries. This tutorial guides you through practical steps and real-world datasets."
 pubDate: 2025-06-05
+date: 2025-06-05
+duration: "Self-paced"
 level: "intermediate"
 tags: ["network analysis", "python", "visualization", "tutorial"]
 externalUrl: "https://github.com/pnsinha/Network-Analysis-and-Visualization"
