@@ -35,6 +35,11 @@ export const mainNav: NavItem[] = [
         label: 'Geocoding',
         description: 'Address validation and geocoding services'
       },
+      {
+        href: '/services/geocoding-demo',
+        label: 'Address Formatting Guide',
+        description: 'How to prepare addresses for geocoding'
+      },
       { 
         href: '/services/arcgis', 
         label: 'ArcGIS Platform',

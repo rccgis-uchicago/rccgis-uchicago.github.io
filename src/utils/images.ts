@@ -6,7 +6,9 @@
  * @returns The path to the image
  */
 export function getImagePath(filename: string): string {
-  return `/src/content/images/${filename}`;
+  // Use Astro's base path for GitHub Pages compatibility
+  const base = typeof import.meta.env.BASE_URL === 'string' ? import.meta.env.BASE_URL : '/';
+  return `${base}images/${filename}`;
 }
 
 /**

@@ -6,7 +6,8 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig(() => ({
   site: 'https://rccgis-uchicago.github.io',
-  base: '/',
+  // Use GitHub Pages base path in CI, otherwise use root for local/Cloudron
+  base: process.env.CI ? '/rccgis-uchicago.github.io/' : '/',
   integrations: [
     react(),
     mdx({

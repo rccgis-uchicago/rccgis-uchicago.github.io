@@ -4,6 +4,27 @@ import { BookOpen, Code, Database, Map, Server, Book, GitBranch, Layers } from '
 
 const tutorials = [
   {
+    title: 'Deep Learning for Geospatial Science',
+    description: 'Explore deep learning methods for geospatial data, including neural networks, image classification, and spatial feature extraction with Python.',
+    url: 'https://github.com/rcc-uchicago/Geocomputation_workshop',
+    icon: Layers,
+    tags: ['deep learning', 'geospatial', 'python']
+  },
+  {
+    title: 'Geospatial Python Series 2',
+    description: 'Advanced spatial data analysis and visualization techniques using Python. Second in the series.',
+    url: 'https://github.com/rccgis-uchicago/geospatial_python_series2',
+    icon: Layers,
+    tags: ['python', 'geospatial', 'advanced']
+  },
+  {
+    title: 'Geospatial Python Series 1',
+    description: 'Introduction to geospatial concepts and Python libraries for spatial data processing. First in the series.',
+    url: 'https://github.com/rccgis-uchicago/geospatial_python_series1',
+    icon: Layers,
+    tags: ['python', 'geospatial', 'introductory']
+  },
+  {
     title: 'Network Analysis and Visualization',
     description: 'Learn how to analyze and visualize network data using GIS techniques.',
     url: 'https://github.com/pnsinha/Network-Analysis-and-Visualization',
@@ -173,6 +194,45 @@ const allTags = [...new Set(tutorials.flatMap(tutorial => tutorial.tags))].sort(
           </div>
         </div>
       </div>
+    </div>
+    </div>
+    <!-- Rendered Jupyter Notebooks Section -->
+    <div class="mt-16 max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">Tutorial Notebooks</h2>
+      <p class="mb-4 text-muted-foreground">
+        Explore interactive and static Jupyter notebook tutorials. Notebooks can be embedded below as HTML or linked for download. To add a new notebook, export it as HTML and place it in <code>public/notebooks/</code>. Then, add an <code>&lt;iframe&gt;</code> or link here.
+      </p>
+      <!-- Geospatial Python Series 2 Notebook -->
+      <div class="border rounded shadow bg-white overflow-x-auto mb-8">
+        <h3 class="text-xl font-semibold mb-2">Geospatial Python Series 2</h3>
+        <iframe src="/notebooks/geospatial_python_series2.html" width="100%" height="200" title="Geospatial Python Series 2 Notebook" style="border:none;"></iframe>
+        <div class="mt-2 text-sm">
+          <a href="/notebooks/geospatial_python_series2.ipynb" download class="text-blue-700 underline">Download notebook (.ipynb)</a>
+          &nbsp;|&nbsp;
+          <a href="/notebooks/geospatial_python_series2.html" download class="text-blue-700 underline">Download as HTML</a>
+        </div>
+      </div>
+      <!-- Geospatial Python Series 1 Notebook -->
+      <div class="border rounded shadow bg-white overflow-x-auto mb-8">
+        <h3 class="text-xl font-semibold mb-2">Geospatial Python Series 1</h3>
+        <iframe src="/notebooks/geospatial_python_series1.html" width="100%" height="200" title="Geospatial Python Series 1 Notebook" style="border:none;"></iframe>
+        <div class="mt-2 text-sm">
+          <a href="/notebooks/geospatial_python_series1.ipynb" download class="text-blue-700 underline">Download notebook (.ipynb)</a>
+          &nbsp;|&nbsp;
+          <a href="/notebooks/geospatial_python_series1.html" download class="text-blue-700 underline">Download as HTML</a>
+        </div>
+      </div>
+      <!-- Deep Learning for Geospatial Science Notebook -->
+      <div class="border rounded shadow bg-white overflow-x-auto mb-8">
+        <h3 class="text-xl font-semibold mb-2">Deep Learning for Geospatial Science</h3>
+        <iframe src="/notebooks/materials.html" width="100%" height="200" title="Deep Learning for Geospatial Science Notebook" style="border:none;"></iframe>
+        <div class="mt-2 text-sm">
+          <a href="/notebooks/materials.ipynb" download class="text-blue-700 underline">Download notebook (.ipynb)</a>
+          &nbsp;|&nbsp;
+          <a href="/notebooks/materials.html" download class="text-blue-700 underline">Download as HTML</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </Layout>
