@@ -103,6 +103,11 @@ export const mainNav: NavItem[] = [
     description: 'Step-by-step GIS guides and how-tos'
   },
   { 
+    href: '/getting-started/account', 
+    label: 'Get Started',
+    description: 'Set up your ArcGIS Online account and access resources'
+  },
+  { 
     href: '/resources/', 
     label: 'Resources',
     description: 'GIS data, tools, and learning materials'
