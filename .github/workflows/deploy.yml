@@ -15,7 +15,7 @@ env:
 
 jobs:
   build:
-    name: Build
+    name: Build and Deploy
     runs-on: ubuntu-latest
     
     steps:
@@ -36,15 +36,10 @@ jobs:
         env:
           NODE_ENV: production
           
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: built-site
-          path: |
-            dist/
-            public/
-            images/
-          retention-days: 1
+          path: './dist'
           
   deploy:
     environment:
@@ -57,55 +52,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        
-  deploy-cloudron:
-    name: Deploy to Cloudron Surfer
-    needs: build
-    if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-          
-      - name: Install Bitwarden CLI
-        run: |
-          npm install -g @bitwarden/cli
-          
-      - name: Install Surfer CLI
-        run: npm install -g cloudron-surfer
-        
-      - name: Download built site
-        uses: actions/download-artifact@v4
-        with:
-          name: built-site
-          path: .
-          
-      - name: List files for debugging
-        run: |
-          echo "Current directory structure:"
-          ls -la
-          echo "\nDist directory contents:"
-          ls -la dist/
-          
-      - name: Configure and Deploy to Cloudron
-        env:
-          SURFER_TOKEN: ${{ secrets.SURFER_API_TOKEN }}
-          SURFER_SERVER: ${{ secrets.SURFER_SERVER }}
-        run: |
-          surfer config --server $SURFER_SERVER --token $SURFER_TOKEN
-          echo "Deploying files to Cloudron..."
-          # Deploy all files from the dist directory
-          if [ -d "dist" ]; then
-            cd dist
-            surfer put * /
-          else
-            echo "Error: dist directory not found!"
-            ls -la
-            exit 1
-          fi

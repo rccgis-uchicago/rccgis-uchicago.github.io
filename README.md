@@ -2,6 +2,32 @@
 
 This is the website for the University of Chicago's Research Computing Center (RCC) Geographic Information Science (GIS). It provides information about GIS resources, training, and support services.
 
+## 🚀 Deployment
+
+### GitHub Pages
+
+This site is automatically deployed to GitHub Pages when changes are pushed to the `main` or `master` branch. The site is available at:
+
+https://rccgis-uchicago.github.io
+
+### Cloudron Deployment (Local)
+
+1. Make sure you have Node.js and npm installed
+2. Install the Cloudron Surfer CLI:
+   ```bash
+   npm install -g cloudron-surfer
+   ```
+3. Configure surfer with your Cloudron credentials:
+   ```bash
+   surfer config --server YOUR_CLOUDRON_SERVER --token YOUR_API_TOKEN
+   ```
+4. Run the deployment script:
+   ```bash
+   ./deploy-cloudron.sh
+   ```
+
+The script will build the site and deploy it to your Cloudron server.
+
 ## 🚀 Project Structure 
 ```
 ├── public/

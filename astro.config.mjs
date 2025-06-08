@@ -5,14 +5,9 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  // Site configuration - use environment variable if set, otherwise default to GitHub Pages
-  site: process.env.PUBLIC_SITE_URL || 'https://rccgis-uchicago.github.io',
-  
-  // Base path - empty for root domain, or repository name for GitHub Pages
-  // Always use relative paths for better compatibility
-  base: './',
-  
-  // Ensure trailing slashes for consistency
+  // GitHub Pages configuration
+  site: 'https://rccgis-uchicago.github.io',
+  base: '/rccgis-uchicago.github.io/',
   trailingSlash: 'always',
   
   // Force static site generation
