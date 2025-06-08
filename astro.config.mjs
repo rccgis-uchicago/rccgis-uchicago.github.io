@@ -4,12 +4,17 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 
 // https://astro.build/config
-export default defineConfig(() => ({
+// Configure integrations separately for clarity
+const reactIntegration = react({
+  include: ['**/components/**/*.{tsx,jsx,js,ts}']
+});
+
+const config = {
   site: 'https://rccgis-uchicago.github.io',
   // Use GitHub Pages base path in CI, otherwise use root for local/Cloudron
   base: process.env.CI ? '/rccgis-uchicago.github.io/' : '/',
   integrations: [
-    react(),
+    reactIntegration,
     mdx({
       remarkPlugins: [],
       rehypePlugins: [],
@@ -42,10 +47,7 @@ export default defineConfig(() => ({
       wrap: true,
     },
   },
-  // Enable MDX support
-  experimental: {
-    mdxRs: true,
-  },
+  // MDX support is enabled by @astrojs/mdx integration
   // Image optimization settings
   image: {
     service: {
@@ -68,4 +70,6 @@ export default defineConfig(() => ({
   },
   // Set the public directory for static assets
   publicDir: 'public',
-}));
+};
+
+export default defineConfig(config);

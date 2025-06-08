@@ -41,8 +41,8 @@ export const mainNav: NavItem[] = [
         description: 'How to prepare addresses for geocoding'
       },
       { 
-        href: '/services/arcgis', 
-        label: 'ArcGIS Platform',
+        href: '/services/arcgis-online', 
+        label: 'ArcGIS Online',
         description: 'Enterprise GIS solutions and support'
       },
       { 

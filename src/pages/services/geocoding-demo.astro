@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AddressValidator from '../../components/forms/AddressValidator';
+---
+
+<Layout title="Address Formatting Guide">
+  <main class="max-w-3xl mx-auto py-10 px-4">
+      <h1 class="text-3xl font-bold mb-4">Address Formatting Guide</h1>
+      <p class="mb-6">Before uploading your CSV file for geocoding, please ensure your addresses are properly formatted. This guide will help you prepare your data for successful geocoding.</p>
+      <h2 class="text-xl font-semibold mt-8 mb-2">Address Format Example</h2>
+      <pre class="bg-gray-100 rounded p-4 text-sm mb-4">STREET: 5801 S Ellis Ave
+CITY: Chicago
+STATE: IL
+POSTAL: 60637
+COUNTRY: US</pre>
+      <h2 class="text-xl font-semibold mt-8 mb-2">Address Format Requirements</h2>
+      <ul class="list-disc list-inside mb-4">
+        <li><b>Required Fields:</b> STREET, CITY, STATE, POSTAL, COUNTRY</li>
+        <li><b>Optional Fields:</b> NEIGHBORHOOD, SUBREGION</li>
+      </ul>
+      <h2 class="text-xl font-semibold mt-8 mb-2">Common Formatting Issues</h2>
+      <table class="w-full text-sm mb-4 border">
+        <thead><tr class="bg-gray-50"><th class="p-2">Issue</th><th class="p-2">Example</th><th class="p-2">Corrected</th></tr></thead>
+        <tbody>
+          <tr><td class="border p-2">Missing street number</td><td class="border p-2">Main St</td><td class="border p-2">123 Main St</td></tr>
+          <tr><td class="border p-2">Full state name</td><td class="border p-2">California</td><td class="border p-2">CA</td></tr>
+          <tr><td class="border p-2">Inconsistent abbreviations</td><td class="border p-2">Street, St, Str</td><td class="border p-2">St</td></tr>
+          <tr><td class="border p-2">Missing postal code</td><td class="border p-2">-</td><td class="border p-2">60637</td></tr>
+          <tr><td class="border p-2">Non-standard characters</td><td class="border p-2">123 Main St #4B</td><td class="border p-2">123 Main St, Unit 4B</td></tr>
+        </tbody>
+      </table>
+      <h2 class="text-xl font-semibold mt-8 mb-2">Tips for Better Results</h2>
+      <ul class="list-disc list-inside mb-4">
+        <li>Use standard abbreviations (St, Ave, Blvd, etc.)</li>
+        <li>Avoid special characters when possible</li>
+        <li>Ensure city names match official postal records</li>
+        <li>Verify postal codes are correct for the given city/state</li>
+        <li>For international addresses, include the correct country code</li>
+      </ul>
+      <h2 class="text-xl font-semibold mt-8 mb-2">Example CSV Format</h2>
+      <pre class="bg-gray-100 rounded p-4 text-sm mb-4">ID,STREET,CITY,STATE,POSTAL,COUNTRY
+1,5801 S Ellis Ave,Chicago,IL,60637,US
+2,1200 E California Blvd,Pasadena,CA,91125,US
+3,1 Queen's Rd,London,,SW1A 1AA,GB</pre>
+      <h2 class="text-xl font-semibold mt-8 mb-2">Need Help?</h2>
+      <p class="mb-4">If you're having trouble formatting your addresses, please contact <a href="mailto:gis-help@rcc.uchicago.edu" class="text-primary-700 underline">GIS Help</a> for assistance.</p>
+      <h2 class="text-xl font-semibold mt-8 mb-2">Tips for Successful Validation</h2>
+      <ul class="list-disc list-inside mb-4">
+        <li>Include as much address information as possible</li>
+        <li>Use standard abbreviations (e.g., "St" instead of "Street")</li>
+        <li>Verify postal codes match the city/state</li>
+        <li>Check for typos in city and street names</li>
+        <li>For US addresses, use the two-letter state code (e.g., "IL" for Illinois)</li>
+      </ul>
+      <h2 class="text-xl font-semibold mt-8 mb-2">Common Issues</h2>
+      <ul class="list-disc list-inside mb-6">
+        <li><b>Incomplete Addresses:</b> Missing street numbers, city, or postal code</li>
+        <li><b>Typos:</b> Common in street names and city names</li>
+        <li><b>Incorrect Formatting:</b> Using full state names instead of codes, or vice versa</li>
+        <li><b>Special Characters:</b> Some special characters might cause validation issues</li>
+      </ul>
+      <h2 class="text-xl font-semibold mt-8 mb-2">Interactive Address Validator</h2>
+      <div class="mb-8">
+        <AddressValidator client:load />
+      </div>
+      <div class="border-l-4 border-blue-500 bg-blue-50 p-4 mb-8">
+        <b>Note:</b> This demo validates address formatting only. For actual geocoding, please use the full service with your CSV file.
+      </div>
+      <hr class="my-8" />
+      <div style="margin-top:1.5em; display:flex; flex-wrap:wrap; gap:1em;">
+        <a href="https://geocoder.rcc.uchicago.edu" target="_blank" rel="noopener noreferrer" style="background:#2563eb; color:white; padding:0.5em 1.2em; border-radius:6px; text-decoration:none; font-weight:600;">Upload CSV for Geocoding</a>
+        <a href="/services/geocoding" style="background:#059669; color:white; padding:0.5em 1.2em; border-radius:6px; text-decoration:none; font-weight:600;">Geocoding Documentation</a>
+        <a href="/contact" style="background:#f59e42; color:white; padding:0.5em 1.2em; border-radius:6px; text-decoration:none; font-weight:600;">Contact Support</a>
+      </div>
+    </main>
+</Layout>

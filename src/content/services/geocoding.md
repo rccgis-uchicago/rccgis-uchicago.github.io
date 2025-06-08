@@ -20,7 +20,7 @@ featured: true
 
 Welcome to the University of Chicago RCC-GIS Geocoding Service. This application allows UChicago affiliates to take lists of street addresses or place names and convert them into latitude and longitude coordinates. The coordinate pairs can then be used in any sort of mapping application or spatial analysis method.
 
-![University of Chicago RCC-GIS Geocoding Service](https://gis.rcc.uchicago.edu/sites/all/themes/nexus_playground/images/summaryofresponsesforweb.png)
+![University of Chicago RCC-GIS Geocoding Service](/images/geocoding/summaryofresponsesforweb.png)
 
 The engine behind the RCC-GIS Geocoding Service is the [ESRI’s World Geocoder for ArcGIS](http://www.esri.com/data/find-data/worldgeocoder). The Geocoding Service has the ability to retrieve coordinates for places around the world. However, coverage does differ from country to country. Click [here](https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm) to see what level of detail is available for different parts of the world. The RCC-GIS Geocoding Service is available to any UChicago affiliate with an active CNetID login and works on a credit-based system. **All users are allocated 2000 credits by default. 2000 credits will allow a user to geocode 50,000 records. If a user needs to geocode more records, a request must be forwarded by email to [gis-help@rcc.uchicago.edu](mailto:gis-help@rcc.uchicago.edu) for a larger allocation.**
 
@@ -45,7 +45,7 @@ COUNTRYCODE
 
 It is NOT necessary to provide data for all the variables listed above. However, if more data is provided, the geocoding service should provide a higher match rate.
 
-Example File: A formatted US address file can be downloaded from [here](https://gis.rcc.uchicago.edu/sites/default/files/example_us_address.csv "example file"). 
+Example File: A formatted US address file can be downloaded from [here](/images/geocoding/example_us_address.csv "example file"). 
 [International address file formatting](https://www.notion.so/rccgis/International-address-file-bed388ad2beb47a49a6f5cc510f8ccf9) 
 For the CSV file creation, RCC recommends the use of OpenOffice or LibreOffice over excel.
 
@@ -53,11 +53,11 @@ For the CSV file creation, RCC recommends the use of OpenOffice or LibreOffice o
 
 Log on to the enterprise ArcGIS Online portal for the University of Chicago by clicking on **“Sign in with Enterprise Login”**.
 
-![Choose UCHICAGO Login](https://gis.rcc.uchicago.edu/sites/all/themes/nexus_playground/images/geocoder/step1.jpg)
+![Choose UCHICAGO Login](/images/geocoding/step1.jpg)
 
-![Choose UCHICAGO Login](https://gis.rcc.uchicago.edu/sites/all/themes/nexus_playground/images/geocoder/step2.jpg)
+![Choose UCHICAGO Login](/images/geocoding/step2.jpg)
 
-![Choose UCHICAGO Login](https://gis.rcc.uchicago.edu/sites/all/themes/nexus_playground/images/geocoder/step3.jpg)
+![Choose UCHICAGO Login](/images/geocoding/step3.jpg)
 
 1. Enter the portal’s URL **“uchicago.maps.arcgis.com”** and click Continue.
 2. Sign in to the University of Chicago portal by clicking on UCHICAGO.

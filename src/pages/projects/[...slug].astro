@@ -4,19 +4,55 @@ import Layout from '../../layouts/Layout.astro';
 
 // Get all projects from the content collection
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map(project => {
-    // Generate slug from filename if not provided in frontmatter
-    const slug = project.slug || project.id.replace(/\.[^/.]+$/, '');
-    return {
-      params: { slug },
-      props: { project },
-    };
-  });
+  try {
+    const projects = await getCollection('projects');
+    return projects.map(project => {
+      try {
+        // Generate slug from filename if not provided in frontmatter
+        const slug = project.slug || project.id.replace(/\.[^/.]+$/, '');
+        if (!slug) {
+          console.warn(`Project missing slug or ID:`, project);
+          return null;
+        }
+        return {
+          params: { slug },
+          props: { project },
+        };
+      } catch (error) {
+        console.error(`Error processing project:`, project, error);
+        return null;
+      }
+    }).filter(Boolean); // Remove any null entries
+  } catch (error) {
+    console.error('Error in getStaticPaths:', error);
+    return [];
+  }
 }
 
+// Add prerender flag to enable static generation
+export const prerender = true;
+
 const { project } = Astro.props;
-const { Content } = await project.render();
+
+// Check if project exists
+if (!project) {
+  // Return 404 page if project is not found
+  return Astro.redirect('/404');
+}
+
+// Safely get the Content component
+let Content;
+try {
+  const result = await project.render();
+  if (result?.Content) {
+    Content = result.Content;
+  } else {
+    throw new Error('Failed to render project content');
+  }
+} catch (error) {
+  console.error('Error rendering project:', error);
+  return Astro.redirect('/404');
+}
 
 // Format date for display
 const formatDate = (dateString) => {
@@ -76,13 +112,11 @@ const formatDate = (dateString) => {
           <img 
             src={project.data.image} 
             alt={project.data.title}
-            class="w-full h-auto object-cover"
+            class="w-full h-auto max-h-96 object-cover"
           />
         </div>
       )}
     </div>
-    
-
     
     <div class="prose max-w-none">
       <Content />

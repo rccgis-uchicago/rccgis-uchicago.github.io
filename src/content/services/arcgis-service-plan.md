@@ -17,6 +17,12 @@ The RCC-GIS offers comprehensive GIS software support services to the University
 - **License Management**: Centralized license administration
 - **Cost Recovery**: Service fees based on usage and requirements
 
+## Available Products
+
+- ArcGIS Online
+- ArcGIS Pro
+- ArcGIS Apps
+
 ## Service Levels
 
 ### Basic Support (Included)
@@ -24,12 +30,6 @@ The RCC-GIS offers comprehensive GIS software support services to the University
 - Basic troubleshooting
 - Email support (gis-help@rcc.uchicago.edu)
 - Access to documentation and resources
-
-### Enhanced Support (Additional Fee)
-- Priority support
-- Custom installation packages
-- On-site training sessions
-- Dedicated technical consultation
 
 ## Important Updates
 
@@ -64,10 +64,11 @@ The RCC-GIS offers comprehensive GIS software support services to the University
 - Compatible hardware specifications
 
 ### Request Access
-1. Contact gis-help@rcc.uchicago.edu
-2. Specify your requirements
-3. Complete the service agreement
-4. Receive access credentials
+1. Contact gis-help@rcc.uchicago.edu or [gis-help@rcc.uchicago.edu](mailto:gis-help@rcc.uchicago.edu)
+2. Provide your CNetID and department affiliation
+3. Specify which products you need access to and your requirements
+4. Complete the service agreement
+5. Receive access credentials
 
 ## Support Resources
 
@@ -75,6 +76,7 @@ The RCC-GIS offers comprehensive GIS software support services to the University
 - [ArcGIS Pro Help](https://pro.arcgis.com/)
 - [ArcGIS Online Documentation](https://doc.arcgis.com/en/arcgis-online/)
 - [UChicago GIS Wiki](https://wiki.uchicago.edu/)
+- [UChicago IT Services](https://its.uchicago.edu/)
 
 ### Training
 - Regular workshops on ArcGIS Pro

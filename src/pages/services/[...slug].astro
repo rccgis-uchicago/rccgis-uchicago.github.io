@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 // Get all services from the content collection
+export const prerender = true;
+
 export async function getStaticPaths() {
   const services = await getCollection('services');
   return services.map(service => {
@@ -10,38 +12,56 @@ export async function getStaticPaths() {
     const slug = service.slug || service.id.replace(/\.[^/.]+$/, '');
     return {
       params: { slug },
-      props: { service },
+      props: { 
+        service: {
+          ...service,
+          // Ensure data exists
+          data: service.data || {}
+        } 
+      },
     };
   });
 }
 
 const { service } = Astro.props;
-const { Content } = await service.render();
 
-// Get related services based on tags
-const getRelatedServices = async (currentSlug, tags = []) => {
-  if (!tags.length) return [];
+// Helper function to get related services
+async function getRelatedServices(currentService) {
+  if (!currentService?.data?.tags?.length) return [];
   
   const allServices = await getCollection('services');
+  const currentSlug = currentService.slug || currentService.id.replace(/\.[^/.]+$/, '');
+  
   return allServices
     .filter(s => {
       const serviceSlug = s.slug || s.id.replace(/\.[^/.]+$/, '');
-      return serviceSlug !== currentSlug && 
-             s.data.tags?.some(tag => tags.includes(tag));
+      const hasMatchingTags = s.data?.tags?.some(tag => 
+        currentService.data.tags.includes(tag)
+      );
+      return serviceSlug !== currentSlug && hasMatchingTags;
     })
     .slice(0, 3); // Limit to 3 related services
-};
+}
 
-// Get related services for the current service
-const relatedServices = await getRelatedServices(
-  service.slug || service.id.replace(/\.[^/.]+$/, ''),
-  service.data.tags || []
-);
+// Get related services if available
+let relatedServices = [];
+if (service?.data?.tags?.length) {
+  relatedServices = await getRelatedServices(service);
+}
+
+// Render the content
+let Content = null;
+try {
+  const result = await service.render();
+  Content = result?.Content || null;
+} catch (error) {
+  console.error('Error rendering service content:', error);
+}
 ---
 
 <Layout 
   title={service.data.title} 
-  description={service.data.description || service.data.summary?.substring(0, 160) + '...'}
+  description={service.data.description || (service.data.summary ? service.data.summary.substring(0, 160) + '...' : '')}
 >
   <article class="max-w-4xl mx-auto py-8 px-4">
     {/* Header with Icon, Title, and Description */}
@@ -67,7 +87,7 @@ const relatedServices = await getRelatedServices(
     </div>
     
     {/* Main Content */}
-    <div class="prose prose-lg max-w-none mx-auto">
+    <div class="prose max-w-none">
       <Content />
     </div>
     

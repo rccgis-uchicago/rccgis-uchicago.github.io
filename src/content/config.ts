@@ -29,6 +29,25 @@ const services = defineCollection({
   }),
 });
 
+// Define the schema for team
+const team = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+    bio: z.string().optional(),
+    image: z.string().optional(),
+    social: z.object({
+      twitter: z.string().optional(),
+      github: z.string().optional(),
+      linkedin: z.string().optional(),
+      website: z.string().optional(),
+    }).optional(),
+    featured: z.boolean().default(false),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
 // Define the schema for workshops
 const workshops = defineCollection({
   type: 'content',
@@ -72,4 +91,5 @@ export const collections = {
   services,
   workshops,
   projects,
+  team,
 };
