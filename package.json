@@ -7,8 +7,8 @@
   },
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "NODE_ENV=development CLOUDRON_DEPLOY=false astro dev",
+    "start": "NODE_ENV=development CLOUDRON_DEPLOY=false astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "tina": "tinacms dev -c \"astro dev\"",

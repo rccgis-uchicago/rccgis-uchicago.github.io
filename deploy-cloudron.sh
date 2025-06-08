@@ -26,6 +26,7 @@ NODE_ENV=production \
 CLOUDRON_DEPLOY=true \
 SITE_URL="https://site.rccgis.org" \
 BASE_PATH="/" \
+PUBLIC_BASE="/" \
 npm run build
 
 # Check if surfer is installed

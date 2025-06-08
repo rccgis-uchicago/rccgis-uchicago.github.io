@@ -41,6 +41,7 @@ jobs:
           CLOUDRON_DEPLOY: 'false'
           SITE_URL: 'https://rccgis-uchicago.github.io'
           BASE_PATH: '/rccgis-uchicago.github.io'
+          PUBLIC_BASE: '/rccgis-uchicago.github.io'
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
