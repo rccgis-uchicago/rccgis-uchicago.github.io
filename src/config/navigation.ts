@@ -103,9 +103,9 @@ export const mainNav: NavItem[] = [
     description: 'Step-by-step GIS guides and how-tos'
   },
   { 
-    href: '/education/', 
-    label: 'Education',
-    description: 'GIS courses and academic programs'
+    href: '/resources/', 
+    label: 'Resources',
+    description: 'GIS data, tools, and learning materials'
   },
   { 
     href: '/about/', 
