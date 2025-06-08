@@ -9,8 +9,11 @@ export default defineConfig({
   site: process.env.PUBLIC_SITE_URL || 'https://rccgis-uchicago.github.io',
   
   // Base path - empty for root domain, or repository name for GitHub Pages
-  // Use environment variable if set, otherwise default to repository name
-  base: process.env.PUBLIC_BASE_PATH || '/rccgis-uchicago.github.io/',
+  // Always use relative paths for better compatibility
+  base: './',
+  
+  // Ensure trailing slashes for consistency
+  trailingSlash: 'always',
   
   // Force static site generation
   output: 'static',

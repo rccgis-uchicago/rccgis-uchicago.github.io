@@ -35,9 +35,6 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          # Set PUBLIC_SITE_URL and PUBLIC_BASE_PATH based on deployment target
-          PUBLIC_SITE_URL: ${{ github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/master' && 'https://gis.uchicago.edu' || 'https://rccgis-uchicago.github.io' }}
-          PUBLIC_BASE_PATH: ${{ github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/master' && '/' || '/rccgis-uchicago.github.io/' }}
           
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
