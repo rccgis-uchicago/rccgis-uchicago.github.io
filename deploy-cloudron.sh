@@ -22,7 +22,11 @@ echo "Installing dependencies..."
 npm ci
 
 echo "Building the site for Cloudron..."
-NODE_ENV=production CLOUDRON_DEPLOY=true npm run build
+NODE_ENV=production \
+CLOUDRON_DEPLOY=true \
+SITE_URL="https://site.rccgis.org" \
+BASE_PATH="/" \
+npm run build
 
 # Check if surfer is installed
 if ! command -v surfer &> /dev/null; then

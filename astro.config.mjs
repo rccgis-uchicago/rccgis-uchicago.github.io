@@ -5,13 +5,10 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 
-// For GitHub Pages
-const isGitHub = process.env.GITHUB_ACTIONS === 'true' || process.env.NODE_ENV === 'production';
+// Environment variables with defaults
 const isCloudron = process.env.CLOUDRON_DEPLOY === 'true';
-
-// Set site and base URLs
-const site = isCloudron ? 'https://site.rccgis.org' : 'https://rccgis-uchicago.github.io';
-const base = isCloudron ? '/' : '/rccgis-uchicago.github.io';
+const site = process.env.SITE_URL || (isCloudron ? 'https://site.rccgis.org' : 'https://rccgis-uchicago.github.io');
+const base = process.env.BASE_PATH || (isCloudron ? '/' : '/rccgis-uchicago.github.io/');
 
 export default defineConfig({
   // Site configuration
@@ -23,7 +20,13 @@ export default defineConfig({
     assets: '_astro',
   },
   vite: {
-    base: isCloudron ? '' : '/rccgis-uchicago.github.io',
+    base: base === '/' ? '' : base,
+    server: {
+      fs: {
+        // Allow serving files from one level up from the package root
+        allow: ['..'],
+      },
+    },
   },
   
   // Integrations
