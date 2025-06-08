@@ -3,22 +3,19 @@ import mdx from '@astrojs/mdx';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 
-// Configure integrations
-const reactIntegration = react({
-  include: ['**/components/**/*.{tsx,jsx,js,ts}']
-});
-
 // https://astro.build/config
 export default defineConfig({
+  // Use the repository name as the base path for GitHub Pages
   site: 'https://rccgis-uchicago.github.io',
-  // Use GitHub Pages base path in CI, otherwise use root for local/Cloudron
-  base: process.env.CI ? '/rccgis-uchicago.github.io/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/rccgis-uchicago.github.io/' : '/',
   // Force static site generation
   output: 'static',
   
   // Integrations
   integrations: [
-    reactIntegration,
+    react({
+      include: ['**/components/**/*.{tsx,jsx,js,ts}']
+    }),
     mdx({
       remarkPlugins: [],
       rehypePlugins: [],
