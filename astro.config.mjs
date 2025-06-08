@@ -5,15 +5,12 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  // Site configuration
-  site: process.env.CLOUDRON_DEPLOY === 'true' 
-    ? 'https://gis.uchicago.edu'  // Cloudron URL
-    : 'https://rccgis-uchicago.github.io',  // GitHub Pages URL
+  // Site configuration - use environment variable if set, otherwise default to GitHub Pages
+  site: process.env.PUBLIC_SITE_URL || 'https://rccgis-uchicago.github.io',
   
   // Base path - empty for root domain, or repository name for GitHub Pages
-  base: process.env.CLOUDRON_DEPLOY === 'true' 
-    ? '/' 
-    : '/rccgis-uchicago.github.io/',
+  // Use environment variable if set, otherwise default to repository name
+  base: process.env.PUBLIC_BASE_PATH || '/rccgis-uchicago.github.io/',
   
   // Force static site generation
   output: 'static',
