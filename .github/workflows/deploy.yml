@@ -42,6 +42,18 @@ jobs:
           path: './dist'
           retention-days: 1
           
+      - name: Create deployment package
+        run: |
+          mkdir -p deployment
+          cp -r dist/* deployment/
+          
+      - name: Upload deployment package
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment
+          path: deployment/
+          retention-days: 1
+          
   deploy:
     environment:
       name: github-pages
@@ -79,13 +91,13 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: github-pages
-          path: dist
+          name: deployment
+          path: .
           
       - name: List files for debugging
         run: |
           ls -la
-          ls -la dist/
+          ls -la deployment/
           
       - name: Configure and Deploy to Cloudron
         env:
@@ -93,4 +105,5 @@ jobs:
           SURFER_SERVER: ${{ secrets.SURFER_SERVER }}
         run: |
           surfer config --server $SURFER_SERVER --token $SURFER_TOKEN
-          surfer put dist/* /
+          # Deploy all files from the deployment directory
+          surfer put deployment/* /
