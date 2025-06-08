@@ -19,7 +19,7 @@ fi
 
 # Build the site for production
 echo "Building the site for production..."
-npm run build
+CLOUDRON_DEPLOY=true npm run build
 
 # Check if surfer is installed
 if ! command -v surfer &> /dev/null; then

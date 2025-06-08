@@ -4,10 +4,16 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 
 // https://astro.build/config
+
+// Determine the base URL based on the environment
+const isCloudron = process.env.NODE_ENV === 'production' && process.env.CLOUDRON_DEPLOY === 'true';
+const site = isCloudron ? 'https://site.rccgis.org' : 'https://rccgis-uchicago.github.io';
+const base = isCloudron ? '/' : '/rccgis-uchicago.github.io/';
+
 export default defineConfig({
-  // GitHub Pages configuration
-  site: 'https://rccgis-uchicago.github.io',
-  base: '/rccgis-uchicago.github.io/',
+  // Site configuration
+  site,
+  base,
   trailingSlash: 'always',
   
   // Force static site generation

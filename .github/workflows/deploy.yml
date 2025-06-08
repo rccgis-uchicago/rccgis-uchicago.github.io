@@ -35,6 +35,8 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          # For GitHub Pages deployment
+          CLOUDRON_DEPLOY: "false"
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
