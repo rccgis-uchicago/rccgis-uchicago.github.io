@@ -5,19 +5,27 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 
-// Determine the base URL based on the environment
-const isCloudron = process.env.NODE_ENV === 'production' && process.env.CLOUDRON_DEPLOY === 'true';
+// For GitHub Pages
+const isGitHub = process.env.GITHUB_ACTIONS === 'true' || process.env.NODE_ENV === 'production';
+const isCloudron = process.env.CLOUDRON_DEPLOY === 'true';
+
+// Set site and base URLs
 const site = isCloudron ? 'https://site.rccgis.org' : 'https://rccgis-uchicago.github.io';
-const base = isCloudron ? '/' : '/rccgis-uchicago.github.io/';
+const base = isCloudron ? '/' : '/rccgis-uchicago.github.io';
 
 export default defineConfig({
   // Site configuration
   site,
   base,
   trailingSlash: 'always',
-  
-  // Force static site generation
   output: 'static',
+  adapter: '@astrojs/netlify',
+  build: {
+    assets: '_astro',
+  },
+  vite: {
+    base: isCloudron ? '' : '/rccgis-uchicago.github.io',
+  },
   
   // Integrations
   integrations: [

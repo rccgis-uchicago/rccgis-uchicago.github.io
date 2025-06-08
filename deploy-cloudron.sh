@@ -17,9 +17,12 @@ if [ -z "$SURFER_SERVER" ] || [ -z "$SURFER_TOKEN" ]; then
     exit 1
 fi
 
-# Build the site for production
-echo "Building the site for production..."
-CLOUDRON_DEPLOY=true npm run build
+# Install dependencies and build the site for production
+echo "Installing dependencies..."
+npm ci
+
+echo "Building the site for Cloudron..."
+NODE_ENV=production CLOUDRON_DEPLOY=true npm run build
 
 # Check if surfer is installed
 if ! command -v surfer &> /dev/null; then
