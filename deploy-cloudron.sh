@@ -22,12 +22,30 @@ echo "Installing dependencies..."
 npm ci
 
 echo "Building the site for Cloudron..."
+# Clean previous build
+rm -rf dist/*
+
+# Build with production settings
 NODE_ENV=production \
 CLOUDRON_DEPLOY=true \
-SITE_URL="https://site.rccgis.org" \
+SITE_URL="https://test.rccgis.org" \
 BASE_PATH="/" \
 PUBLIC_BASE="/" \
 npm run build
+
+# Create directory structure for Cloudron
+cd dist
+find . -type f -name '*.html' | while read file; do
+  # Create directory structure
+  dir=$(dirname "$file")
+  mkdir -p "$dir/$(basename "$file" .html)"
+  
+  # Move HTML file to directory/index.html
+  mv "$file" "$dir/$(basename "$file" .html)/index.html"
+done
+
+# Move back to project root
+cd ..
 
 # Check if surfer is installed
 if ! command -v surfer &> /dev/null; then

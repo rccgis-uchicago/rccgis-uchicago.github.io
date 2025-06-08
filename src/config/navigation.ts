@@ -21,32 +21,32 @@ export const mainNav: NavItem[] = [
     description: 'Welcome to RCC-GIS at the University of Chicago'
   },
   { 
-    href: '/services', 
+    href: '/services/', 
     label: 'Services',
     description: 'Explore our professional GIS services and solutions',
     children: [
       { 
-        href: '/services/computing', 
+        href: '/services/computing/', 
         label: 'Computing Resources',
         description: 'High-performance computing for spatial analysis'
       },
       { 
-        href: '/services/geocoding', 
+        href: '/services/geocoding/', 
         label: 'Geocoding',
         description: 'Address validation and geocoding services'
       },
       {
-        href: '/services/geocoding-demo',
+        href: '/services/geocoding-demo/',
         label: 'Address Formatting Guide',
         description: 'How to prepare addresses for geocoding'
       },
       { 
-        href: '/services/arcgis-online', 
+        href: '/services/arcgis-online/', 
         label: 'ArcGIS Online',
         description: 'Enterprise GIS solutions and support'
       },
       { 
-        href: '/services/arcgis-service-plan', 
+        href: '/services/arcgis-service-plan/', 
         label: 'ArcGIS Service Plan',
         description: 'Licensing and support plans for ArcGIS'
       }
@@ -75,105 +75,82 @@ export const mainNav: NavItem[] = [
     description: 'Training and educational opportunities',
     children: [
       { 
-        href: '/workshops/upcoming', 
+        href: '/workshops/upcoming/', 
         label: 'Upcoming Workshops',
         description: 'Register for our next training session'
       },
       { 
-        href: '/workshops/past', 
+        href: '/workshops/past/', 
         label: 'Past Workshops',
         description: 'Materials and recordings from previous workshops'
       },
       { 
-        href: '/workshops/tutorials', 
+        href: '/workshops/tutorials/', 
         label: 'Tutorials',
         description: 'Self-paced learning resources',
         children: [
-          { href: '/tutorials/arcgis-pro', label: 'ArcGIS Pro' },
-          { href: '/tutorials/qgis', label: 'QGIS' },
-          { href: '/tutorials/python', label: 'Python for GIS' },
-          { href: '/tutorials/web-mapping', label: 'Web Mapping' }
+          { href: '/tutorials/arcgis-pro/', label: 'ArcGIS Pro' },
+          { href: '/tutorials/qgis/', label: 'QGIS' },
+          { href: '/tutorials/python/', label: 'Python for GIS' },
+          { href: '/tutorials/web-mapping/', label: 'Web Mapping' }
         ]
       }
     ]
   },
   { 
-    href: '/resources', 
-    label: 'Resources',
-    description: 'Tools, data, and reference materials',
-    children: [
-      { 
-        href: '/resources/software', 
-        label: 'Software',
-        description: 'GIS and spatial analysis tools'
-      },
-      { 
-        href: '/resources/data', 
-        label: 'Data Collections',
-        description: 'Spatial datasets and resources'
-      },
-      { 
-        href: '/resources/lab-facilities', 
-        label: 'Lab Facilities',
-        description: 'Available equipment and workspaces'
-      },
-      { 
-        href: '/resources/imagery', 
-        label: 'Imagery',
-        description: 'Satellite and aerial imagery sources'
-      },
-      { 
-        href: '/resources/google-earth-engine', 
-        label: 'Earth Engine',
-        description: 'Google Earth Engine resources',
-        external: true
-      }
-    ]
+    href: '/tutorials/', 
+    label: 'Tutorials',
+    description: 'Step-by-step GIS guides and how-tos'
   },
   { 
-    href: '/about', 
+    href: '/education/', 
+    label: 'Education',
+    description: 'GIS courses and academic programs'
+  },
+  { 
+    href: '/about/', 
     label: 'About Us',
     description: 'Learn about our team, mission, and partnerships',
     children: [
       { 
-        href: '/about/team', 
+        href: '/about/team/', 
         label: 'Our Team',
         description: 'Meet our expert GIS team and researchers'
       },
       { 
-        href: '/about/mission', 
+        href: '/about/mission/', 
         label: 'Mission & Values',
         description: 'Our commitment to advancing spatial research'
       },
       { 
-        href: '/about/partners', 
+        href: '/about/partners/', 
         label: 'Partners',
         description: 'Academic and industry collaborations'
       },
       { 
-        href: '/about/join', 
+        href: '/about/join/', 
         label: 'Join Us',
         description: 'Career and collaboration opportunities'
       }
     ]
   },
   { 
-    href: '/contact', 
+    href: '/contact/', 
     label: 'Contact',
     description: 'Get in touch with our team',
     children: [
       { 
-        href: '/contact#support', 
+        href: '/contact#support/', 
         label: 'Get Support',
         description: 'Submit a support request'
       },
       { 
-        href: '/contact#consulting', 
+        href: '/contact#consulting/', 
         label: 'Consulting',
         description: 'Schedule a consultation'
       },
       { 
-        href: '/contact#directions', 
+        href: '/contact#directions/', 
         label: 'Directions',
         description: 'Find our location on campus'
       },

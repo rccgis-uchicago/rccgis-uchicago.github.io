@@ -7,8 +7,8 @@
   },
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development CLOUDRON_DEPLOY=false astro dev",
-    "start": "NODE_ENV=development CLOUDRON_DEPLOY=false astro dev",
+    "dev": "NODE_ENV=development CLOUDRON_DEPLOY=false BASE_PATH='' astro dev --host --port 4322",
+    "start": "NODE_ENV=development CLOUDRON_DEPLOY=false BASE_PATH='' astro dev --host --port 4322",
     "build": "astro build",
     "preview": "astro preview",
     "tina": "tinacms dev -c \"astro dev\"",
