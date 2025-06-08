@@ -13,6 +13,8 @@ const config = {
   site: 'https://rccgis-uchicago.github.io',
   // Use GitHub Pages base path in CI, otherwise use root for local/Cloudron
   base: process.env.CI ? '/rccgis-uchicago.github.io/' : '/',
+  // Explicitly set output to 'static' for static site generation
+  output: 'static',
   integrations: [
     reactIntegration,
     mdx({
