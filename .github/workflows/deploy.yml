@@ -36,27 +36,14 @@ jobs:
         env:
           NODE_ENV: production
           
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist'
-          retention-days: 1
-          
-      - name: Prepare Cloudron deployment
-        run: |
-          # Create deployment directory and copy files
-          mkdir -p deployment
-          cp -r dist/* deployment/
-          
-          # List files for debugging
-          echo "Files in deployment directory:"
-          ls -la deployment/
-          
-      - name: Upload Cloudron deployment package
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: cloudron-deployment
-          path: deployment/
+          name: built-site
+          path: |
+            dist/
+            public/
+            images/
           retention-days: 1
           
   deploy:
@@ -93,19 +80,18 @@ jobs:
       - name: Install Surfer CLI
         run: npm install -g cloudron-surfer
         
-      - name: Download Cloudron artifacts
+      - name: Download built site
         uses: actions/download-artifact@v4
         with:
-          name: cloudron-deployment
+          name: built-site
           path: .
           
-      - name: Verify deployment files
+      - name: List files for debugging
         run: |
           echo "Current directory structure:"
           ls -la
-          
-          echo "\nDeployment directory contents:"
-          ls -la deployment/ || echo "No deployment directory found"
+          echo "\nDist directory contents:"
+          ls -la dist/
           
       - name: Configure and Deploy to Cloudron
         env:
@@ -113,12 +99,13 @@ jobs:
           SURFER_SERVER: ${{ secrets.SURFER_SERVER }}
         run: |
           surfer config --server $SURFER_SERVER --token $SURFER_TOKEN
-          # Deploy all files from the deployment directory
-          if [ -d "deployment" ]; then
-            echo "Deploying files from deployment directory..."
-            surfer put deployment/* /
+          echo "Deploying files to Cloudron..."
+          # Deploy all files from the dist directory
+          if [ -d "dist" ]; then
+            cd dist
+            surfer put * /
           else
-            echo "Error: deployment directory not found!"
+            echo "Error: dist directory not found!"
             ls -la
             exit 1
           fi
