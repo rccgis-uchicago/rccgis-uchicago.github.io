@@ -19,7 +19,6 @@ export default defineConfig({
   base,
   trailingSlash: 'always',
   output: 'static',
-  adapter: '@astrojs/netlify',
   build: {
     assets: '_astro',
   },
