@@ -13,20 +13,29 @@ https://rccgis-uchicago.github.io
 ### Cloudron Deployment (Local)
 
 1. Make sure you have Node.js and npm installed
-2. Install the Cloudron Surfer CLI:
+2. Create a `.env` file in the project root with your Cloudron credentials:
+   ```bash
+   SURFER_SERVER=your-cloudron-server.example.com
+   SURFER_TOKEN=your-api-token-here
+   ```
+   
+   ⚠️ **Important**: Add `.env` to your `.gitignore` to keep your credentials secure.
+
+3. Install the Cloudron Surfer CLI:
    ```bash
    npm install -g cloudron-surfer
    ```
-3. Configure surfer with your Cloudron credentials:
-   ```bash
-   surfer config --server YOUR_CLOUDRON_SERVER --token YOUR_API_TOKEN
-   ```
+
 4. Run the deployment script:
    ```bash
+   chmod +x deploy-cloudron.sh
    ./deploy-cloudron.sh
    ```
 
-The script will build the site and deploy it to your Cloudron server.
+The script will automatically:
+- Load your credentials from the `.env` file
+- Build the production site
+- Deploy to your configured Cloudron server
 
 ## 🚀 Project Structure 
 ```
