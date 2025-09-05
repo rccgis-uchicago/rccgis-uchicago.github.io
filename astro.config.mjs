@@ -45,10 +45,8 @@ export default defineConfig({
     // Use directory format for cleaner URLs
     format: 'file',
   },
-  // Ensure proper routing for all pages
-  experimental: {
-    redirects: true
-  },
+  // Redirects configuration (moved from experimental)
+  redirects: {},
   server: {
     host: true,
     port: 4322
@@ -99,11 +97,7 @@ export default defineConfig({
     },
   },
   
-  // Build configuration
-  build: {
-    format: 'file',
-    assets: '_astro',
-  },
+
   
   // Public directory for static assets
   publicDir: 'public',
