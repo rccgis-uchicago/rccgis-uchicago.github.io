@@ -45,9 +45,13 @@ export default defineConfig({
     // Use directory format for cleaner URLs
     format: 'file',
   },
+  // Ensure proper routing for all pages
+  experimental: {
+    redirects: true
+  },
   server: {
     host: true,
-    port: 4321
+    port: 4322
   },
   vite: {
     base: isDev ? '/' : base,

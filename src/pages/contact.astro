@@ -1,238 +1,85 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Mail, MapPin, Clock, HelpCircle, User, Building2, Calendar, MessageSquare } from 'lucide-astro';
+import { Mail, Clock, HelpCircle } from 'lucide-astro';
 
 const contactMethods = [
   {
     icon: Mail,
-    title: 'Email',
+    title: 'Email Support',
     description: 'gis-help@rcc.uchicago.edu',
     href: 'mailto:gis-help@rcc.uchicago.edu'
   },
   {
-    icon: MapPin,
-    title: 'Location',
-    description: 'Regenstein Library Room 216, University of Chicago',
-    href: 'https://maps.google.com/?q=Regenstein+Library+University+of+Chicago'
+    icon: Mail,
+    title: 'General Inquiries',
+    description: 'help@rcc.uchicago.edu',
+    href: 'mailto:help@rcc.uchicago.edu'
   },
   {
     icon: Clock,
-    title: 'Office Hours',
-    description: 'Monday-Friday, 9:00 AM - 5:00 PM',
+    title: 'Weekly Helpdesk Hours',
+    description: 'Thursday, 1:00 PM - 3:00 PM',
     href: null
   }
 ];
-
-const supportHours = {
-  regular: 'Monday-Friday, 9:00 AM - 5:00 PM',
-  summer: 'Monday-Thursday, 9:00 AM - 5:00 PM (Summer Quarter)'
-};
 ---
 
 <Layout title="Contact RCC-GIS">
-  <div class="container mx-auto px-4 py-16">
-    <h1 class="text-4xl font-bold mb-8">Contact Us</h1>
+  <div class="container mx-auto px-4 py-16 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-8">Get Support</h1>
     
-    <!-- Contact Methods -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-      {contactMethods.map(({ icon: Icon, title, description, href }, index) => (
-        <div key={index} class="p-6 rounded-lg border bg-card hover:shadow-md transition-shadow">
-          <Icon class="h-8 w-8 mb-4 text-primary" />
-          <h3 class="text-xl font-semibold mb-2">{title}</h3>
-          {href ? (
-            <a href={href} class="text-muted-foreground hover:text-primary transition-colors">
-              {description}
-            </a>
-          ) : (
-            <p class="text-muted-foreground">{description}</p>
-          )}
-        </div>
-      ))}
-    </div>
-
-    <!-- Support Request Form -->
-    <div class="max-w-3xl mx-auto bg-muted/30 p-8 rounded-lg border">
-      <div class="text-center mb-8">
-        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
-          <HelpCircle class="h-8 w-8" />
-        </div>
-        <h2 class="text-2xl font-bold mb-2">Submit a Support Request</h2>
-        <p class="text-muted-foreground">
-          Fill out the form below and our team will get back to you as soon as possible.
-        </p>
+    <div class="space-y-12">
+      {/* Contact Methods */}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {contactMethods.map(({ icon: Icon, title, description, href }, index) => (
+          <div key={index} class="p-6 rounded-lg border bg-white hover:shadow-md transition-shadow">
+            <Icon class="h-8 w-8 mb-4 text-blue-600" />
+            <h3 class="text-xl font-semibold mb-2">{title}</h3>
+            {href ? (
+              <a href={href} class="text-blue-600 hover:text-blue-800 transition-colors break-words">
+                {description}
+              </a>
+            ) : (
+              <p class="text-gray-700">{description}</p>
+            )}
+          </div>
+        ))}
       </div>
 
-      <form class="space-y-6" action="/api/support-request" method="POST">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label for="name" class="block text-sm font-medium mb-2 flex items-center">
-              <User class="h-4 w-4 mr-1 text-muted-foreground" />
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-              placeholder="Your full name"
-            />
-          </div>
-          <div>
-            <label for="department" class="block text-sm font-medium mb-2 flex items-center">
-              <Building2 class="h-4 w-4 mr-1 text-muted-foreground" />
-              Department/Unit
-            </label>
-            <input
-              type="text"
-              id="department"
-              name="department"
-              required
-              class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-              placeholder="Your department or unit"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label for="email" class="block text-sm font-medium mb-2">
-            University Email (CNetID@uchicago.edu)
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            pattern=".+@uchicago\.edu"
-            class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="cnetid@uchicago.edu"
-          />
-          <p class="mt-1 text-xs text-muted-foreground">
-            Please use your University of Chicago email address
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label for="preferredDate" class="block text-sm font-medium mb-2 flex items-center">
-              <Calendar class="h-4 w-4 mr-1 text-muted-foreground" />
-              Preferred Meeting Date (Optional)
-            </label>
-            <input
-              type="date"
-              id="preferredDate"
-              name="preferredDate"
-              class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-            />
-          </div>
-          <div>
-            <label for="preferredTime" class="block text-sm font-medium mb-2">
-              Preferred Meeting Time (Optional)
-            </label>
-            <select
-              id="preferredTime"
-              name="preferredTime"
-              class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
-            >
-              <option value="">Select a time</option>
-              <option value="morning">Morning (9 AM - 12 PM)</option>
-              <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label for="message" class="block text-sm font-medium mb-2 flex items-center">
-            <MessageSquare class="h-4 w-4 mr-1 text-muted-foreground" />
-            How can we help you?
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            required
-            class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Please provide details about your GIS support needs, including any specific software, data, or analysis requirements."
-          ></textarea>
-        </div>
-
+      {/* Support Information */}
+      <div class="bg-blue-50 p-8 rounded-lg border border-blue-100">
         <div class="flex items-start">
-          <div class="flex items-center h-5">
-            <input
-              id="consent"
-              name="consent"
-              type="checkbox"
-              required
-              class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-            />
+          <div class="flex-shrink-0">
+            <HelpCircle class="h-6 w-6 text-blue-600 mt-1" />
           </div>
-          <div class="ml-3 text-sm">
-            <label for="consent" class="font-medium text-foreground">
-              I agree to the processing of my personal data in accordance with the University's privacy policy
-            </label>
+          <div class="ml-3">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">How We Can Help</h2>
+            <div class="prose">
+              <p class="text-gray-700 mb-4">
+                The RCC-GIS team provides support for:
+              </p>
+              <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                <li>GIS Software: Assistance with ArcGIS, QGIS, and other GIS tools</li>
+                <li>Geospatial Data: Access to shared datasets and help with data management</li>
+                <li>Geocoding Services: Support for geocoding processes and troubleshooting</li>
+                <li>Training and Workshops: Guidance on GIS methods and software usage</li>
+                <li>Consultations: One-on-one support for advanced GIS projects</li>
+              </ul>
+            </div>
           </div>
         </div>
-
-        <div class="pt-2">
-          <button
-            type="submit"
-            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-          >
-            Submit Support Request
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
-
-    <!-- Support Hours Notice -->
-    <div class="mt-12 p-6 bg-blue-50 rounded-lg border border-blue-100">
-      <h3 class="text-lg font-medium text-blue-800 mb-2">Support Hours</h3>
-      <p class="text-blue-700">
-        <span class="font-medium">Regular Hours:</span> {supportHours.regular}<br />
-        <span class="font-medium">Summer Hours:</span> {supportHours.summer}
-      </p>
-      <p class="mt-2 text-sm text-blue-600">
-        Please note that response times may be longer during university holidays and breaks.
-      </p>
+    
+    {/* Additional Information */}
+    <div class="mt-12 bg-gray-50 p-6 rounded-lg border">
+      <h3 class="text-lg font-semibold mb-4">Additional Information</h3>
+      <div class="prose">
+        <p class="text-gray-700">
+          For general inquiries or to schedule a consultation, please email us at 
+          <a href="mailto:gis-help@rcc.uchicago.edu" class="text-blue-600 hover:underline">gis-help@rcc.uchicago.edu</a>.
+        </p>
+      </div>
     </div>
   </div>
 </Layout>
-          />
-        </div>
-
-        <div>
-          <label for="subject" class="block text-sm font-medium mb-2">
-            Subject
-          </label>
-          <input
-            type="text"
-            id="subject"
-            name="subject"
-            required
-            class="w-full px-3 py-2 border rounded-md"
-          />
-        </div>
-
-        <div>
-          <label for="message" class="block text-sm font-medium mb-2">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows="6"
-            required
-            class="w-full px-3 py-2 border rounded-md"
-          ></textarea>
-        </div>
-
-        <button
-          type="submit"
-          class="w-full bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-primary/90"
-        >
-          Send Message
-        </button>
-      </form>
-    </div>
-  </div>
-</Layout> 

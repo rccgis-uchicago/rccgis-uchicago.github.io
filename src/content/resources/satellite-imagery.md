@@ -1,9 +1,13 @@
 ---
 title: "Satellite Imagery Resources"
-description: "Access and utilize various satellite imagery sources for GIS applications"
+description: "Comprehensive guide to satellite imagery sources and applications for GIS at University of Chicago"
 type: "dataset"
-tags: ["imagery", "remote sensing", "gis"]
+client: "University of Chicago RCC"
+status: "available"
+tags: ["satellite imagery", "remote sensing", "gis", "data sources"]
 featured: true
+image: "/images/resources/imagery-cover.jpg"
+startDate: 2021-01-01
 ---
 
 # Satellite Imagery Resources
@@ -38,24 +42,57 @@ Satellite imagery is a crucial data source for many GIS applications. The Univer
   *Access:* Free through USDA Geospatial Data Gateway  
   *Special Features:* Leaf-on imagery, 4-band (RGB + NIR)
 
-- **PlanetScope**  
-  *Resolution:* 3m  
-  *Temporal Coverage:* 2016-Present  
-  *Access:* Subscription-based, available through institutional license  
-  *Special Features:* Near-daily global coverage
-
-### Specialized Datasets
-- **ASTER Global DEM**  
+- **ASTER Global DEM Data**  
   *Resolution:* 30m  
   *Coverage:* Global  
   *Access:* Free through NASA Earthdata  
-  *Special Features:* Elevation data, suitable for terrain analysis
+  *Special Features:* Digital elevation models with 1 arc-second resolution
 
-- **Nighttime Lights**  
-  *Sources:* VIIRS, DMSP-OLS  
-  *Resolution:* 500m-2.7km  
-  *Access:* Free through NOAA  
-  *Special Features:* Human settlement patterns, economic activity indicators
+- **Digital Globe Satellite Imagery**  
+  *Resolution:* Up to 30cm  
+  *Coverage:* Global  
+  *Access:* Commercial, available through RCC  
+  *Special Features:* Very high resolution, frequent updates
+
+### Specialized Datasets
+- **ESA Global Land Cover**  
+  *Resolution:* 300m  
+  *Coverage:* Global  
+  *Access:* Free through ESA CCI  
+  *Special Features:* Annual land cover maps since 1992
+
+## Applications in GIS
+
+### Common Applications
+- Land use and land cover mapping
+- Urban planning and development monitoring
+- Agricultural yield estimation
+- Disaster response and damage assessment
+- Environmental monitoring
+- Climate change studies
+
+### Key Considerations
+- **Spatial resolution**: Level of detail in the imagery
+- **Spectral resolution**: Number and width of spectral bands
+- **Temporal resolution**: How often the same area is imaged
+- **Atmospheric corrections**: Required for accurate analysis
+- **Image classification techniques**: Methods for extracting information
+
+## Access and Support
+
+RCC provides support and resources for working with these imagery sources in GIS applications. Contact our team for assistance with accessing or processing satellite imagery:
+
+- Email: [gis-help@rcc.uchicago.edu](mailto:gis-help@rcc.uchicago.edu)
+- [Contact Form](/contact/)
+- [Support Portal](/support/)
+
+## Training and Resources
+
+RCC offers various training on GIS every year. Additional training is also provided by library GIS services. Check our [workshops page](/workshops/) for upcoming training sessions.
+
+## Need Help?
+
+For questions about satellite imagery or assistance with GIS projects, please contact the RCC GIS team at [gis-help@rcc.uchicago.edu](mailto:gis-help@rcc.uchicago.edu).
 
 ## Access Methods
 

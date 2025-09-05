@@ -20,7 +20,7 @@ export const mainNav: NavItem[] = [
     label: 'Home',
     description: 'Welcome to RCC-GIS at the University of Chicago'
   },
-  { 
+  {
     href: '/services/', 
     label: 'Services',
     description: 'Explore our professional GIS services and solutions',
@@ -32,8 +32,13 @@ export const mainNav: NavItem[] = [
       },
       { 
         href: '/services/geocoding/', 
-        label: 'Geocoding',
-        description: 'Address validation and geocoding services'
+        label: 'Geocoding Strategy',
+        description: 'Comprehensive geocoding infrastructure and strategy'
+      },
+      { 
+        href: '/services/rcc-geocoding-service/', 
+        label: 'RCC Geocoding Service',
+        description: 'Enterprise geocoding service for UChicago affiliates'
       },
       {
         href: '/services/geocoding-demo/',
@@ -53,24 +58,24 @@ export const mainNav: NavItem[] = [
     ]
   },
   { 
-    href: '/projects', 
+    href: '/projects/', 
     label: 'Projects',
     description: 'Featured GIS projects and research initiatives',
     children: [
       { 
-        href: '/projects/webgis', 
+        href: '/projects/webgis/', 
         label: 'WebGIS Applications',
         description: 'Interactive web mapping solutions'
       },
       { 
-        href: '/projects/geoai', 
+        href: '/projects/geoai/', 
         label: 'GeoAI Research',
         description: 'AI and machine learning for geospatial analysis'
       }
     ]
   },
   { 
-    href: '/workshops', 
+    href: '/workshops/', 
     label: 'Workshops',
     description: 'Training and educational opportunities',
     children: [
@@ -103,39 +108,29 @@ export const mainNav: NavItem[] = [
     description: 'Step-by-step GIS guides and how-tos'
   },
   { 
-    href: '/getting-started/account', 
-    label: 'Get Started',
-    description: 'Set up your ArcGIS Online account and access resources'
-  },
-  { 
     href: '/resources/', 
     label: 'Resources',
     description: 'GIS data, tools, and learning materials'
   },
   { 
-    href: '/about/', 
-    label: 'About Us',
-    description: 'Learn about our team, mission, and partnerships',
+    href: '/getting-started/account/', 
+    label: 'Get Started',
+    description: 'Get started with RCC-GIS services',
     children: [
       { 
-        href: '/about/team/', 
-        label: 'Our Team',
-        description: 'Meet our expert GIS team and researchers'
+        href: '/getting-started/account/', 
+        label: 'Request an Account',
+        description: 'Request access to RCC-GIS services'
       },
       { 
-        href: '/about/mission/', 
-        label: 'Mission & Values',
-        description: 'Our commitment to advancing spatial research'
+        href: '/getting-started/orientation/', 
+        label: 'Orientation',
+        description: 'Get started with our orientation materials'
       },
       { 
-        href: '/about/partners/', 
-        label: 'Partners',
-        description: 'Academic and industry collaborations'
-      },
-      { 
-        href: '/about/join/', 
-        label: 'Join Us',
-        description: 'Career and collaboration opportunities'
+        href: '/getting-started/faq/', 
+        label: 'FAQ',
+        description: 'Frequently asked questions'
       }
     ]
   },
@@ -168,26 +163,9 @@ export const mainNav: NavItem[] = [
     ]
   },
   { 
-    href: '/getting-started', 
-    label: 'Get Started',
-    description: 'New to RCC-GIS? Start here',
-    children: [
-      { 
-        href: '/getting-started/account', 
-        label: 'Request an Account',
-        description: 'Get access to our resources'
-      },
-      { 
-        href: '/getting-started/orientation', 
-        label: 'Orientation',
-        description: 'New user guide and resources'
-      },
-      { 
-        href: '/getting-started/faq', 
-        label: 'FAQ',
-        description: 'Frequently asked questions'
-      }
-    ]
+    href: '/about/mission/', 
+    label: 'About Us',
+    description: 'Our commitment to advancing spatial research'
   }
 ];
 

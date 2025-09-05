@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = 'Frequently Asked Questions - RCC-GIS';
+const description = 'Find answers to common questions about geocoding, software, data, and support at RCC-GIS';
+---
+
+<Layout title={title} description={description}>
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Frequently Asked Questions</h1>
+      <p class="text-xl text-muted-foreground">Find answers to common questions about our services and resources</p>
+    </div>
+
+    <div class="space-y-12">
+      <!-- Geocoding Section -->
+      <div class="space-y-6">
+        <h2 class="text-2xl font-bold text-blue-800 border-b pb-2">Geocoding</h2>
+        
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">How can I geocode a large number of addresses?</h3>
+            <p class="text-gray-700">
+              The RCC-GIS Geocoding Service can be used for this purpose. If you have more addresses than your credit allocation allows, you can request additional credits from the help desk.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">My geocoding job is failing. What could be the problem?</h3>
+            <p class="text-gray-700">
+              Geocoding failures can be due to several reasons, including incorrect file formatting, special characters in the data, or exceeding your credit limit. Ensure your CSV file is properly formatted and that you have sufficient credits. If the issue persists, you can seek assistance from the help desk.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Is the online geocoding service HIPAA compliant?</h3>
+            <p class="text-gray-700">
+              No, but we do have options for HIPAA-compliant geocoding. It is recommended to consult with the RCC-GIS team for specific guidance on how to handle Protected Health Information (PHI) securely.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Software and Data Section -->
+      <div class="space-y-6">
+        <h2 class="text-2xl font-bold text-blue-800 border-b pb-2">Software and Data</h2>
+        
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">How do I install ArcGIS Pro on a Mac?</h3>
+            <p class="text-gray-700">
+              ArcGIS Pro is a Windows-based application. To run it on a Mac, you will need to use virtualization software like Parallels or access it through the University's Virtual Lab (VLab).
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">How can I access specific datasets like the Esri Advanced Demographics?</h3>
+            <p class="text-gray-700">
+              To access specialized datasets, you can submit a request to the GIS team, specifying the data you need and the context of your project.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Can I get help converting a map from a PDF or JPG to a GIS-compatible format?</h3>
+            <p class="text-gray-700">
+              Yes, you can request assistance with converting map files into a format that can be used within ArcGIS.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Training and Support Section -->
+      <div class="space-y-6">
+        <h2 class="text-2xl font-bold text-blue-800 border-b pb-2">Training and Support</h2>
+        
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Are there GIS training opportunities available?</h3>
+            <p class="text-gray-700">
+              RCC offers various training on GIS every year. Additional training is also provided by library GIS services.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Who should I contact for GIS-related questions?</h3>
+            <p class="text-gray-700">
+              For any GIS-related inquiries, including technical support, license requests, and data access, you can contact the RCC-GIS help desk at <a href="mailto:gis-help@rcc.uchicago.edu" class="text-blue-600 hover:underline">gis-help@rcc.uchicago.edu</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

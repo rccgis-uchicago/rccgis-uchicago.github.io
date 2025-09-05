@@ -1,7 +1,7 @@
 ---
-import Layout from '../../layouts/ContentLayout.astro';
+import Layout from '../../layouts/Layout.astro';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../components/ui/card';
 import { CheckCircle, ExternalLink, Server, User } from 'lucide-astro';
 
 const title = 'Getting Started with ArcGIS Online';
@@ -11,7 +11,7 @@ const description = 'Learn how to access and set up your ArcGIS Online account a
 <Layout title={title} description={description}>
   <div class="container mx-auto px-4 py-12 max-w-4xl">
     <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold mb-4">Getting Started with ArcGIS Online</h1>
+      <h1 class="text-4xl font-bold mb-4">{title}</h1>
       <p class="text-xl text-muted-foreground">Access UChicago's enterprise GIS platform and resources</p>
     </div>
 

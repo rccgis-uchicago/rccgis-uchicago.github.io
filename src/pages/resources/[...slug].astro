@@ -152,7 +152,7 @@ const formattedDate = formatDate(resource.data.updatedAt || resource.data.pubDat
       <section class="mt-16 pt-12 border-t border-border">
         <div class="flex items-center justify-between mb-8">
           <h2 class="text-2xl font-bold text-foreground">Related Resources</h2>
-          <a href="/resources" class="text-sm font-medium text-primary hover:underline flex items-center">
+          <a href="/resources/" class="text-sm font-medium text-primary hover:underline flex items-center">
             View all resources
             <ArrowRight class="ml-1 h-4 w-4" />
           </a>
@@ -165,7 +165,7 @@ const formattedDate = formatDate(resource.data.updatedAt || resource.data.pubDat
             
             return (
               <a 
-                href={`/resources/${related.slug}`}
+                href={`/resources/${related.slug}/`}
                 class="group flex flex-col h-full p-5 rounded-lg border border-border bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200"
               >
                 <div class="flex items-center justify-between mb-3">

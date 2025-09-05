@@ -49,9 +49,9 @@ const logoPath = getImagePath('LOGO_GIS.png');
                     <div class="py-1">
                       {item.children.map((child) => (
                         <a
-                          href={child.href.replace(/\/$/, '')}
+                          href={child.href}
                           class={`block px-4 py-2 text-sm ${
-                            currentPath === child.href.replace(/\/$/, '')
+                            currentPath === child.href
                               ? 'bg-accent text-accent-foreground'
                               : 'text-foreground/80 hover:bg-accent hover:text-accent-foreground'
                           }`}
@@ -65,9 +65,9 @@ const logoPath = getImagePath('LOGO_GIS.png');
               </>
             ) : (
               <a
-                href={item.href.replace(/\/$/, '')}
+                href={item.href}
                 class={`px-3 py-2 text-sm font-medium rounded-md ${
-                  currentPath === item.href.replace(/\/$/, '')
+                  currentPath === item.href
                     ? 'text-primary font-semibold'
                     : 'text-foreground/80 hover:text-foreground'
                 }`}
@@ -112,11 +112,11 @@ const logoPath = getImagePath('LOGO_GIS.png');
                 />
               </button>
               <div x-show="openItem === index" x-collapse class="pl-4 space-y-1">
-                {item.children.map((child, childIndex) => (
+                {item.children?.map((child) => (
                   <a
-                    href={child.href.replace(/\/$/, '')}
+                    href={child.href}
                     class={`block px-3 py-2 text-base font-medium rounded-md ${
-                      currentPath === child.href.replace(/\/$/, '')
+                      currentPath === child.href
                         ? 'text-primary font-medium'
                         : 'text-foreground/70 hover:text-foreground hover:bg-accent/50'
                     }`}
@@ -128,9 +128,9 @@ const logoPath = getImagePath('LOGO_GIS.png');
             </div>
           ) : (
             <a
-              href={item.href.replace(/\/$/, '')}
+              href={item.href}
               class={`block px-3 py-2 text-base font-medium rounded-md ${
-                currentPath === item.href.replace(/\/$/, '')
+                currentPath === item.href
                   ? 'bg-accent text-accent-foreground'
                   : 'text-foreground/80 hover:text-foreground hover:bg-accent/50'
               }`}

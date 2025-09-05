@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ArrowRight } from 'lucide-astro';
+
+const title = 'Mission & Vision - RCC-GIS';
+const description = 'Learn about the mission and vision of RCC-GIS and its role within the University of Chicago Research Computing Center';
+---
+
+<Layout title={title} description={description}>
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Our Mission & Vision</h1>
+      <p class="text-xl text-muted-foreground">Supporting Geospatial Research at the University of Chicago</p>
+    </div>
+
+    <div class="prose prose-lg mx-auto mb-12">
+      <p class="text-lg">
+        RCC-GIS is a specialized unit within the University of Chicago's <a href="https://rcc.uchicago.edu/about-rcc/vision-mission" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Research Computing Center (RCC)</a>, focused on providing geospatial research support and resources to the university community.
+      </p>
+      
+      <div class="bg-blue-50 p-6 rounded-lg my-8 border border-blue-100">
+        <h2 class="text-2xl font-bold mb-4">RCC's Mission & Vision</h2>
+        <p class="mb-4">
+          The Research Computing Center's mission is to advance research and scholarship by providing access to high-end computing and data resources, training, and advanced technical support.
+        </p>
+        <a 
+          href="https://rcc.uchicago.edu/about-rcc/vision-mission" 
+          class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read more about RCC's full mission and vision
+          <ArrowRight class="w-4 h-4 ml-1" />
+        </a>
+      </div>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">RCC-GIS's Role</h2>
+      <p class="mb-4">
+        As part of RCC, RCC-GIS specifically focuses on geospatial research support, providing:
+      </p>
+      <ul class="list-disc pl-6 space-y-2 mb-6">
+        <li>Expertise in GIS software and spatial analysis</li>
+        <li>Access to geospatial data and resources</li>
+        <li>Training and workshops on geospatial methods</li>
+        <li>Consultation for research projects involving spatial data</li>
+        <li>Support for geocoding and spatial data visualization</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">Our Commitment</h2>
+      <p>
+        RCC-GIS is committed to supporting the University of Chicago's research community by providing the tools, resources, and expertise needed to advance geospatial research across all disciplines. We work closely with researchers to understand their spatial analysis needs and provide tailored solutions that enhance their research capabilities.
+      </p>
+    </div>
+  </div>
+</Layout>
