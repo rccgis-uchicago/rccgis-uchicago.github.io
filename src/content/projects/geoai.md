@@ -6,7 +6,7 @@ startDate: 2021-01-01
 status: "active"
 tags: ["AI", "machine learning", "archaeology", "remote sensing"]
 featured: true
-image: "images/geoai-cover.jpg"
+image: "/images/projects/geoai-cover.png"
 ---
 
 The RCC's GIS and scientific computing teams partner with University of Chicago researchers to apply advanced computational methods to complex geospatial questions. We specialize in combining geospatial data with artificial intelligence, deep learning, and sophisticated environmental modeling to create new methodologies and accelerate research.
