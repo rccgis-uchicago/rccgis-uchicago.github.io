@@ -42,8 +42,8 @@ export default defineConfig({
   output: 'static',
   build: {
     assets: '_astro',
-    // Use directory format for cleaner URLs
-    format: 'file',
+    // Use directory format for cleaner URLs with trailing slashes
+    format: 'directory',
   },
   // Redirects configuration (moved from experimental)
   redirects: {},
