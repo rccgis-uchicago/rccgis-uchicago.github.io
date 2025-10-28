@@ -1,0 +1,18 @@
+---
+import Layout from './Layout.astro';
+import 'cesium/Build/Cesium/Widgets/widgets.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+  <link
+    rel="stylesheet"
+    href="https://cesium.com/downloads/cesiumjs/releases/1.95/Build/Cesium/Widgets/widgets.css"
+  />
+  <slot />
+</Layout>
