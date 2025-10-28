@@ -1,0 +1,116 @@
+<!--
+  GIS Viewer Component using CesiumJS
+  For professional GIS visualization on RCC-GIS site
+-->
+
+---
+// Astro component setup
+import { useEffect, useRef } from 'react';
+---
+
+<div class="w-full h-[600px] rounded-lg shadow-xl overflow-hidden">
+  <div ref={useRef()} id="cesium-container" class="w-full h-full"></div>
+</div>
+
+<script is:inline>
+  import * as Cesium from 'cesium';
+  
+  // Initialize Cesium viewer when component mounts
+  window.addEventListener('load', async () => {
+    // Check if Cesium is loaded
+    if (typeof Cesium !== 'undefined') {
+      const container = document.getElementById('cesium-container');
+      
+      // Initialize Cesium viewer with UChicago-centered view
+      const viewer = new Cesium.Viewer(container, {
+        terrainProvider: Cesium.createWorldTerrain(),
+        animation: false,
+        baseLayerPicker: true,
+        geocoder: true,
+        navigationHelpButton: false,
+        sceneModePicker: true,
+        infoBox: false,
+        selectionIndicator: false,
+        // Use a more academic/neutral color scheme
+        scene3DOnly: false,
+      });
+      
+      // Remove Cesium branding for cleaner look
+      viewer.cesiumWidget.creditContainer.style.display = 'none';
+      
+      // Fly to University of Chicago coordinates
+      viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(-87.6019, 41.7897, 1500),
+        orientation: {
+          heading: Cesium.Math.toRadians(0),
+          pitch: Cesium.Math.toRadians(-45),
+          roll: 0.0
+        }
+      });
+      
+      // Add a simple marker for UChicago
+      const universityPosition = Cesium.Cartesian3.fromDegrees(-87.6019, 41.7897);
+      viewer.entities.add({
+        position: universityPosition,
+        point: {
+          pixelSize: 15,
+          color: Cesium.Color.RED,
+          outlineColor: Cesium.Color.WHITE,
+          outlineWidth: 3,
+        },
+        label: {
+          text: 'University of Chicago',
+          font: '16px sans-serif',
+          fillColor: Cesium.Color.WHITE,
+          outlineColor: Cesium.Color.BLACK,
+          outlineWidth: 2,
+          style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+          pixelOffset: new Cesium.Cartesian2(0, -20),
+        }
+      });
+      
+      // Clean up on unmount
+      window.addEventListener('beforeunload', () => {
+        viewer.destroy();
+      });
+    } else {
+      console.error('Cesium failed to load');
+      // Fallback content
+      container.innerHTML = '
+        <div class="w-full h-full flex items-center justify-center bg-gray-100">
+          <p class="text-gray-600">Interactive map unavailable. Please try again later.</p>
+        </div>
+      ';
+    }
+  });
+</script>
+
+<style>
+  /* Ensure Cesium fills its container properly */
+  #cesium-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Make Cesium responsive */
+  .cesium-viewer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  /* Customize Cesium toolbar for better integration */
+  .cesium-viewer-toolbar {
+    left: 10px !important;
+    top: 10px !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+  
+  .cesium-viewer-bottom {
+    display: none !important; /* Hide bottom bar for cleaner look */
+  }
+</style>
