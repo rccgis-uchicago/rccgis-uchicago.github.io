@@ -3,6 +3,9 @@ import mdx from '@astrojs/mdx';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 
+// View Transitions for smooth page navigation
+// https://docs.astro.build/en/guides/view-transitions/
+
 // https://astro.build/config
 
 // Environment detection
