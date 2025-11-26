@@ -6,136 +6,446 @@ import { getImagePath } from '../utils/images';
 // Use local image instead of remote URL
 const bgImagePath = getImagePath('bg.jpg');
 
-// SVG Icons
+// SVG Icons - Modern Lucide-style icons
 const icons = {
-  map: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>`,
-  database: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg>`,
-  school: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22v-4a2 2 0 1 0-4 0v4"></path><path d="m18 10 4-2-8-4-8 4 4 2"></path><path d="M18 5v9"></path><path d="m6 12 8 4 7-3v-5"></path><path d="m4 17 6 3 6-3v-3"></path></svg>`,
-  users: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
+  map: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>`,
+  database: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg>`,
+  school: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22v-4a2 2 0 1 0-4 0v4"></path><path d="m18 10 4-2-8-4-8 4 4 2"></path><path d="M18 5v9"></path><path d="m6 12 8 4 7-3v-5"></path><path d="m4 17 6 3 6-3v-3"></path></svg>`,
+  users: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+  brain: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M19.967 17.484A4 4 0 0 1 18 18"/></svg>`,
+  globe: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`
 };
 
-
-const features = [
+// Services with metrics for credibility
+const services = [
+  {
+    icon: 'brain',
+    title: 'GeoAI & Machine Learning',
+    description: 'AI-powered archaeological detection at national scale. Our deep learning pipeline processed 70M LiDAR tiles across Afghanistan in under a week—a task requiring 6 months manually.',
+    href: '/projects/geoai',
+    metric: '70M+',
+    metricLabel: 'LiDAR tiles processed',
+    featured: true,
+    gradient: 'from-blue-600/20 to-cyan-500/20'
+  },
   {
     icon: 'map',
     title: 'GIS Software',
-    description: 'Access ArcGIS Pro, QGIS, and specialized tools',
-    href: '/resources/software'
+    description: 'Access ArcGIS Pro, QGIS, GRASS GIS, and specialized geospatial tools.',
+    href: '/resources/software',
+    metric: '15+',
+    metricLabel: 'software tools',
+    gradient: 'from-primary/10 to-accent/10'
   },
   {
     icon: 'database',
-    title: 'Data Resources',
-    description: 'Chicago GIS data portal and spatial datasets',
-    href: '/resources/data'
+    title: 'Geocoding Service',
+    description: 'Enterprise batch geocoding with ESRI World Geocoder. High accuracy for research data.',
+    href: '/services/geocoding',
+    metric: '50K+',
+    metricLabel: 'records per batch',
+    gradient: 'from-emerald-500/10 to-teal-500/10'
   },
   {
     icon: 'school',
-    title: 'Workshops',
-    description: 'GIS workshops and learning resources',
-    href: '/workshops'
+    title: 'Workshops & Training',
+    description: 'Hands-on GIS workshops, tutorials, and learning resources for all skill levels.',
+    href: '/workshops',
+    metric: '20+',
+    metricLabel: 'workshop topics',
+    gradient: 'from-violet-500/10 to-purple-500/10'
+  },
+  {
+    icon: 'globe',
+    title: 'WebGIS Applications',
+    description: 'Custom web mapping solutions for research visualization and data sharing.',
+    href: '/projects/webgis',
+    metric: '5+',
+    metricLabel: 'projects in pipeline',
+    gradient: 'from-orange-500/10 to-amber-500/10'
   },
   {
     icon: 'users',
-    title: 'Support',
-    description: 'Expert consultation and technical assistance',
-    href: '/contact'
+    title: 'Research Support',
+    description: 'Expert consultation, technical assistance, and collaboration on spatial research.',
+    href: '/contact',
+    metric: '100+',
+    metricLabel: 'researchers supported',
+    gradient: 'from-rose-500/10 to-pink-500/10'
   }
 ];
 ---
 
 <Layout title="CyberGIS at UChicago">
-  <!-- Hero Section -->
-  <section class="relative h-[600px] w-full">
-    <div class="absolute inset-0">
-      <Image alt="CyberGIS Background"
-        src={bgImagePath}
-        width={1920} // Add appropriate width
-        height={1080} // Add appropriate height
-        class="w-full h-full object-cover brightness-[0.65] filter contrast-[1.1]"
-      />
-      <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70"></div>
+  <!-- Hero Section - Split Screen Design -->
+  <section class="relative min-h-[90vh] w-full overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgb(148 163 184 / 0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
     </div>
-    <div class="absolute inset-0 flex items-center justify-center">
-      <div class="text-center text-white p-8">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6">
-          CyberGIS at UChicago
-        </h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
-          Advanced spatial computing and analytics for research innovation
+    
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 min-h-[90vh] items-center">
+        <!-- Left Content (60%) -->
+        <div class="lg:col-span-3 pt-24 lg:pt-0 animate-fade-in-up">
+          <div class="max-w-2xl">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+              <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+              University of Chicago Research Computing Center
+            </div>
+            
+            <!-- Main Heading -->
+            <h1 class="font-display text-display-lg md:text-display-xl text-foreground mb-6 leading-tight">
+              Advancing<br />
+              <span class="text-primary">Spatial Intelligence</span>
+            </h1>
+            
+            <!-- Subheading -->
+            <p class="text-body-lg md:text-xl text-muted-foreground mb-8 max-w-xl leading-relaxed">
+              Empowering research through cutting-edge geospatial computing, AI-driven analytics, and comprehensive GIS services.
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap gap-4">
+              <a 
+                href="/resources" 
+                class="group inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3.5 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
+              >
+                Explore Resources
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
+              <a 
+                href="/contact" 
+                class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-foreground px-6 py-3.5 rounded-lg font-medium border border-border transition-all duration-300 hover:shadow-md"
+              >
+                Get Support
+              </a>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="flex flex-wrap gap-8 mt-12 pt-8 border-t border-border/50">
+              <div class="animate-fade-in delay-200">
+                <div class="text-3xl font-bold text-primary counter">70M+</div>
+                <div class="text-sm text-muted-foreground">LiDAR Tiles Processed</div>
+              </div>
+              <div class="animate-fade-in delay-300">
+                <div class="text-3xl font-bold text-primary counter">100+</div>
+                <div class="text-sm text-muted-foreground">Researchers Supported</div>
+              </div>
+              <div class="animate-fade-in delay-400">
+                <div class="text-3xl font-bold text-primary counter">650K</div>
+                <div class="text-sm text-muted-foreground">km² Analyzed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Visual (40%) -->
+        <div class="lg:col-span-2 relative animate-fade-in delay-200">
+          <div class="relative aspect-square max-w-lg mx-auto">
+            <!-- Animated Background Circles -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="absolute w-[80%] h-[80%] rounded-full border border-primary/20 animate-pulse"></div>
+              <div class="absolute w-[60%] h-[60%] rounded-full border border-accent/30"></div>
+              <div class="absolute w-[40%] h-[40%] rounded-full bg-gradient-to-br from-primary/10 to-accent/10"></div>
+            </div>
+            
+            <!-- Central Visual -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="relative w-64 h-64 md:w-80 md:h-80">
+                <!-- Map/GIS Visual Placeholder -->
+                <div class="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border border-white/50">
+                  <Image 
+                    src={bgImagePath}
+                    alt="GIS Visualization"
+                    width={400}
+                    height={400}
+                    class="w-full h-full object-cover"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent"></div>
+                  
+                  <!-- Overlay Elements -->
+                  <div class="absolute bottom-4 left-4 right-4">
+                    <div class="glass rounded-lg p-3">
+                      <div class="flex items-center gap-2 text-sm text-foreground">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="font-medium">Live Processing</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Floating Cards -->
+                <div class="absolute -top-4 -right-4 glass rounded-xl p-3 shadow-lg animate-fade-in delay-300">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary" set:html={icons.brain}></div>
+                    <div class="text-xs">
+                      <div class="font-semibold text-foreground">GeoAI</div>
+                      <div class="text-muted-foreground">Active</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="absolute -bottom-4 -left-4 glass rounded-xl p-3 shadow-lg animate-fade-in delay-400">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent" set:html={icons.globe}></div>
+                    <div class="text-xs">
+                      <div class="font-semibold text-foreground">WebGIS</div>
+                      <div class="text-muted-foreground">5+ Projects</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Services Section - Bento Box Layout -->
+  <section class="py-20 lg:py-28 bg-background" id="services">
+    <div class="container mx-auto px-4 lg:px-8">
+      <!-- Section Header -->
+      <div class="max-w-2xl mx-auto text-center mb-16 animate-on-scroll">
+        <h2 class="font-heading text-display-md text-foreground mb-4">Our Services</h2>
+        <p class="text-body-lg text-muted-foreground">
+          Comprehensive geospatial solutions for research, analysis, and innovation.
         </p>
-        <div class="flex gap-4 justify-center">
+      </div>
+      
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        {services.map((service, index) => (
           <a 
-            href="/resources" 
-            class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium"
+            href={service.href}
+            class:list={[
+              "group relative block rounded-2xl border border-border/50 overflow-hidden transition-all duration-500",
+              "hover-lift hover:border-primary/30",
+              service.featured ? "md:col-span-2 lg:col-span-2 md:row-span-2" : "",
+              "animate-on-scroll"
+            ]}
+            style={`animation-delay: ${index * 100}ms`}
           >
-            Explore Resources
+            {/* Gradient Background */}
+            <div class={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+            
+            {/* Glass Effect on Hover */}
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px]"></div>
+            
+            <div class:list={[
+              "relative p-6 lg:p-8 h-full flex flex-col",
+              service.featured ? "min-h-[400px]" : "min-h-[200px]"
+            ]}>
+              {/* Icon */}
+              <div class:list={[
+                "flex items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:scale-110",
+                service.featured ? "w-16 h-16 mb-6" : "w-12 h-12 mb-4"
+              ]}>
+                <span set:html={icons[service.icon]} />
+              </div>
+              
+              {/* Content */}
+              <div class="flex-1">
+                <h3 class:list={[
+                  "font-heading font-semibold text-foreground mb-2 group-hover:text-primary transition-colors",
+                  service.featured ? "text-heading-xl" : "text-heading-md"
+                ]}>
+                  {service.title}
+                </h3>
+                <p class:list={[
+                  "text-muted-foreground leading-relaxed",
+                  service.featured ? "text-body-lg" : "text-body-md"
+                ]}>
+                  {service.description}
+                </p>
+              </div>
+              
+              {/* Metric Badge */}
+              <div class="mt-6 pt-4 border-t border-border/50 flex items-center justify-between">
+                <div>
+                  <span class:list={[
+                    "font-bold text-primary counter",
+                    service.featured ? "text-2xl" : "text-xl"
+                  ]}>
+                    {service.metric}
+                  </span>
+                  <span class="text-sm text-muted-foreground ml-2">{service.metricLabel}</span>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                  <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section - Modern Split Design -->
+  <section class="py-20 lg:py-28 bg-muted/50 overflow-hidden">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Left Content -->
+        <div class="animate-on-scroll">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+            About RCC-GIS
+          </div>
+          <h2 class="font-heading text-display-md text-foreground mb-6">
+            Pioneering Spatial Research at UChicago
+          </h2>
+          <p class="text-body-lg text-muted-foreground mb-6 leading-relaxed">
+            The University of Chicago's Research Computing Center for Geographic Information Science (GIS) 
+            is at the forefront of integrating Big Data, AI, and GIScience.
+          </p>
+          <p class="text-body-md text-muted-foreground mb-8 leading-relaxed">
+            We engage in interdisciplinary research and education with UChicago users who want to incorporate 
+            GIS methods and software. Our comprehensive services include cartography, data mining, spatial 
+            statistics, and high-performance computing solutions.
+          </p>
           <a 
-            href="/contact" 
-            class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-md font-medium"
+            href="/about/mission" 
+            class="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
           >
-            Get Support
+            Learn more about us
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
           </a>
+        </div>
+        
+        <!-- Right - Research Focus Cards -->
+        <div class="grid grid-cols-2 gap-4 animate-on-scroll delay-200">
+          <div class="p-6 rounded-2xl bg-white border border-border/50 hover-lift">
+            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600 mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+              </svg>
+            </div>
+            <h3 class="font-heading font-semibold text-foreground mb-1">Big Data Analytics</h3>
+            <p class="text-sm text-muted-foreground">Geospatial big data processing and analytics</p>
+          </div>
+          
+          <div class="p-6 rounded-2xl bg-white border border-border/50 hover-lift">
+            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-600 mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading font-semibold text-foreground mb-1">Spatial Computing</h3>
+            <p class="text-sm text-muted-foreground">High-performance computing for spatial analysis</p>
+          </div>
+          
+          <div class="p-6 rounded-2xl bg-white border border-border/50 hover-lift">
+            <div class="w-10 h-10 rounded-lg bg-violet-500/10 flex items-center justify-center text-violet-600 mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading font-semibold text-foreground mb-1">GeoAI</h3>
+            <p class="text-sm text-muted-foreground">AI-powered geospatial analysis and prediction</p>
+          </div>
+          
+          <div class="p-6 rounded-2xl bg-white border border-border/50 hover-lift">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-600 mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+              </svg>
+            </div>
+            <h3 class="font-heading font-semibold text-foreground mb-1">CyberGIS</h3>
+            <p class="text-sm text-muted-foreground">Cyberinfrastructure for geographic research</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features Grid -->
-  <section class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {features.map(({ icon, title, description, href }) => (
-        <a 
-          href={href}
-          class="group block p-6 bg-card hover:shadow-lg transition-shadow rounded-lg border"
-        >
-          <span class="h-6 w-6 mb-4 text-primary" set:html={icons[icon]} />
-          <h3 class="text-xl font-semibold mb-2">{title}</h3>
-          <p class="text-muted-foreground">{description}</p>
-        </a>
-      ))}
+  <!-- CTA Section - Modern Split Design -->
+  <section class="py-20 lg:py-28 bg-gradient-to-br from-primary to-primary/90 relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 32px 32px;"></div>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="bg-muted py-16">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold mb-6">About RCC-GIS</h2>
-        <p class="text-lg mb-6">
-          The University of Chicago's Research Computing Center (RCC) for Geographic Information Science (GIS) 
-          is at the forefront of integrating Big Data, AI, and GIScience. Our commitment spans interdisciplinary 
-          research in:
-        </p>
-        <ul class="list-disc list-inside space-y-2 mb-6 text-lg">
-          <li>Geospatial big data analytics</li>
-          <li>Spatial computing</li>
-          <li>Geospatial AI (GeoAI)</li>
-          <li>CyberGIS</li>
-        </ul>
-        <p class="text-lg">
-          RCC-GIS engages in interdisciplinary research and education with UChicago users who want to incorporate 
-          GIS methods and software. We offer comprehensive services including cartography, data mining, spatial 
-          statistics, and high-performance computing solutions.
-        </p>
+    
+    <div class="container mx-auto px-4 lg:px-8 relative">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid lg:grid-cols-5 gap-8 items-center">
+          <!-- Left Content -->
+          <div class="lg:col-span-3 text-center lg:text-left">
+            <h2 class="font-heading text-display-md text-white mb-4">
+              Ready to Get Started?
+            </h2>
+            <p class="text-lg text-white/80 mb-0 lg:mb-0">
+              Our team is here to help you with your GIS research needs. From data analysis to custom solutions, we've got you covered.
+            </p>
+          </div>
+          
+          <!-- Right CTA -->
+          <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-4 justify-center lg:justify-end">
+            <a 
+              href="/contact" 
+              class="group inline-flex items-center justify-center gap-2 bg-white text-primary px-6 py-3.5 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-black/20"
+            >
+              Contact Us
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+            <a 
+              href="/getting-started" 
+              class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3.5 rounded-lg font-medium transition-all duration-300 border border-white/20"
+            >
+              Getting Started Guide
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-  <!-- CTA Section -->
-  <section class="container mx-auto px-4 py-16">
-    <div class="text-center">
-      <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-      <p class="text-lg text-muted-foreground mb-8">
-        Our team is here to help you with your GIS needs.
-      </p>
-      <a 
-        href="/contact" 
-        class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium inline-block"
-      >
-        Contact Us
-      </a>
-    </div>
-  </section>
 </Layout>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements with animate-on-scroll class
+  document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+  });
+  
+  // Re-observe on page transition
+  document.addEventListener('astro:page-load', () => {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => {
+      el.classList.remove('is-visible');
+      observer.observe(el);
+    });
+  });
+</script>
