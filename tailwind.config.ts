@@ -9,6 +9,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        display: ['Clash Display', 'Space Grotesk', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        // Typography scale for headings
+        'display-xl': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display-lg': ['3.75rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display-md': ['3rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'heading-xl': ['2.25rem', { lineHeight: '1.25', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'heading-lg': ['1.875rem', { lineHeight: '1.3', fontWeight: '600' }],
+        'heading-md': ['1.5rem', { lineHeight: '1.4', fontWeight: '600' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.6' }],
+        'body-md': ['1rem', { lineHeight: '1.6' }],
+        'body-sm': ['0.875rem', { lineHeight: '1.5' }],
+        'caption': ['0.75rem', { lineHeight: '1.4' }],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
