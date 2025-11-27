@@ -211,12 +211,16 @@ Phase 1: Foundation (Week 1)
  Add Google Fonts (Space Grotesk, Inter, Clash Display)
  Create CSS animation utilities
  Enable View Transitions API in Astro config
+Status: Implemented
+Branch: feature/landing-page-redesign-phase1
 Phase 2: Hero & Services (Week 1-2)
  Redesign hero section with split layout
  Add interactive GIS visualization (optional)
  Implement bento-box services layout
  Add glassmorphism effects with CSS
  Implement scroll animations
+Status: Implemented
+Branch: feature/landing-page-redesign-phase2
 Phase 2.5: Content Asset Collection (Week 2)
  Gather all project images
  Collect metrics data
@@ -231,12 +235,16 @@ Phase 3: New Sections (Week 2-3)
  Add partners section with infinite scroll
  Modernize CTA section
  Implement Intersection Observer for animations
+Status: Implemented
+Branch: feature/landing-page-redesign-phase2
 Phase 4: Site-wide Improvements (Week 3)
  Enhance navigation with backdrop-blur
  Add View Transitions between pages
  Implement scroll-driven animations
  Add micro-interactions with CSS
  Optimize images and performance
+Status: Implemented
+Branch: feature/landing-page-redesign-phase2
 Phase 5: Polish & Testing (Week 3-4)
  Accessibility audit
  Cross-browser testing
