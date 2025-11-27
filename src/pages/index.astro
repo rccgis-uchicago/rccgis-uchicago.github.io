@@ -295,8 +295,357 @@ const services = [
     </div>
   </section>
 
-  <!-- About Section - Modern Split Design -->
+  <!-- Impact Metrics Section -->
+  <section class="py-20 lg:py-24 bg-gradient-to-b from-background to-muted/30 overflow-hidden">
+    <div class="container mx-auto px-4 lg:px-8">
+      <!-- Section Header -->
+      <div class="max-w-2xl mx-auto text-center mb-16 animate-on-scroll">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
+          Our Impact
+        </div>
+        <h2 class="font-heading text-display-md text-foreground mb-4">Driving Research Forward</h2>
+        <p class="text-body-lg text-muted-foreground">
+          Measurable outcomes from our geospatial computing and AI initiatives.
+        </p>
+      </div>
+      
+      <!-- Metrics Grid -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <!-- Metric 1: LiDAR Tiles -->
+        <div class="group relative p-6 lg:p-8 rounded-2xl bg-white border border-border/50 hover-lift animate-on-scroll text-center">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-blue-500/10 flex items-center justify-center">
+              <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+              </svg>
+            </div>
+            <div class="text-4xl lg:text-5xl font-bold text-foreground mb-1 counter" data-target="70000000">70M+</div>
+            <div class="text-sm text-muted-foreground font-medium">LiDAR Tiles Processed</div>
+            <div class="text-xs text-muted-foreground/70 mt-1">AHMP Afghanistan Project</div>
+          </div>
+        </div>
+        
+        <!-- Metric 2: Area Analyzed -->
+        <div class="group relative p-6 lg:p-8 rounded-2xl bg-white border border-border/50 hover-lift animate-on-scroll delay-100 text-center">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+              <svg class="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div class="text-4xl lg:text-5xl font-bold text-foreground mb-1 counter">650K</div>
+            <div class="text-sm text-muted-foreground font-medium">km² Analyzed</div>
+            <div class="text-xs text-muted-foreground/70 mt-1">National-scale coverage</div>
+          </div>
+        </div>
+        
+        <!-- Metric 3: Archaeological Sites -->
+        <div class="group relative p-6 lg:p-8 rounded-2xl bg-white border border-border/50 hover-lift animate-on-scroll delay-200 text-center">
+          <div class="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-orange-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-amber-500/10 flex items-center justify-center">
+              <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+              </svg>
+            </div>
+            <div class="text-4xl lg:text-5xl font-bold text-foreground mb-1 counter">11.9K</div>
+            <div class="text-sm text-muted-foreground font-medium">Sites Identified</div>
+            <div class="text-xs text-muted-foreground/70 mt-1">30% database expansion</div>
+          </div>
+        </div>
+        
+        <!-- Metric 4: Speed Improvement -->
+        <div class="group relative p-6 lg:p-8 rounded-2xl bg-white border border-border/50 hover-lift animate-on-scroll delay-300 text-center">
+          <div class="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-violet-500/10 flex items-center justify-center">
+              <svg class="w-7 h-7 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <div class="text-4xl lg:text-5xl font-bold text-foreground mb-1 counter">10x</div>
+            <div class="text-sm text-muted-foreground font-medium">Faster Processing</div>
+            <div class="text-xs text-muted-foreground/70 mt-1">vs. manual methods</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
   <section class="py-20 lg:py-28 bg-muted/50 overflow-hidden">
+    <div class="container mx-auto px-4 lg:px-8">
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        <div class="animate-on-scroll">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+            Featured Work
+          </div>
+          <h2 class="font-heading text-display-md text-foreground mb-2">Research Projects</h2>
+          <p class="text-body-lg text-muted-foreground max-w-xl">
+            Pioneering spatial research through AI, deep learning, and advanced computing.
+          </p>
+        </div>
+        <a 
+          href="/projects/" 
+          class="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all animate-on-scroll"
+        >
+          View all projects
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+      
+      <!-- Projects Carousel -->
+      <div class="relative">
+        <div class="flex gap-6 overflow-x-auto pb-4 scroll-snap-x scrollbar-hide -mx-4 px-4 lg:mx-0 lg:px-0">
+          <!-- Project 1: GeoAI/AHMP -->
+          <a 
+            href="/projects/geoai/"
+            class="group flex-shrink-0 w-[340px] lg:w-[400px] scroll-snap-item animate-on-scroll"
+          >
+            <div class="relative rounded-2xl overflow-hidden bg-white border border-border/50 hover-lift transition-all duration-500">
+              <!-- Project Image -->
+              <div class="relative h-48 lg:h-56 overflow-hidden">
+                <picture>
+                  <source
+                    srcset="/images/projects/geoai-cover-w400.webp 400w, /images/projects/geoai-cover-w800.webp 800w"
+                    type="image/webp"
+                  />
+                  <img 
+                    src="/images/projects/geoai-cover.png" 
+                    srcset="/images/projects/geoai-cover-w400.png 400w, /images/projects/geoai-cover-w800.png 800w"
+                    sizes="(max-width: 640px) 340px, 400px"
+                    alt="GeoAI - Afghan Heritage Mapping"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute top-4 left-4">
+                  <span class="px-3 py-1 rounded-full bg-blue-500 text-white text-xs font-medium">GeoAI</span>
+                </div>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <div class="flex items-center gap-2 text-white/90 text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <span>Afghanistan</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Project Content -->
+              <div class="p-6">
+                <h3 class="font-heading text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  Afghan Heritage Mapping Partnership
+                </h3>
+                <p class="text-muted-foreground text-sm mb-4 line-clamp-2">
+                  Deep learning pipeline processed 70M LiDAR tiles, identifying 11,900 archaeological sites—expanding the known database by 30%.
+                </p>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                    <span class="flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                      Active
+                    </span>
+                    <span>Since 2021</span>
+                  </div>
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Project 2: WebGIS/JCOIN -->
+          <a 
+            href="/projects/webgis/"
+            class="group flex-shrink-0 w-[340px] lg:w-[400px] scroll-snap-item animate-on-scroll delay-100"
+          >
+            <div class="relative rounded-2xl overflow-hidden bg-white border border-border/50 hover-lift transition-all duration-500">
+              <div class="relative h-48 lg:h-56 overflow-hidden">
+                <picture>
+                  <source
+                    srcset="/images/projects/webgis-generic-cover-w400.webp 400w, /images/projects/webgis-generic-cover-w800.webp 800w"
+                    type="image/webp"
+                  />
+                  <img 
+                    src="/images/projects/webgis-generic-cover.png" 
+                    srcset="/images/projects/webgis-generic-cover-w400.png 400w, /images/projects/webgis-generic-cover-w800.png 800w"
+                    sizes="(max-width: 640px) 340px, 400px"
+                    alt="WebGIS Platform Development"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute top-4 left-4">
+                  <span class="px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-medium">WebGIS</span>
+                </div>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <div class="flex items-center gap-2 text-white/90 text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+                    </svg>
+                    <span>NIH HEAL Initiative</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="p-6">
+                <h3 class="font-heading text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  JCOIN Opioid Crisis Dashboard
+                </h3>
+                <p class="text-muted-foreground text-sm mb-4 line-clamp-2">
+                  Interactive spatial platform for opioid use disorder resources and federal grant distribution analysis for researchers and policymakers.
+                </p>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                    <span class="flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                      Active
+                    </span>
+                    <span>Since 2021</span>
+                  </div>
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Project 3: Petra Water Management -->
+          <a 
+            href="/projects/geoai/"
+            class="group flex-shrink-0 w-[340px] lg:w-[400px] scroll-snap-item animate-on-scroll delay-200"
+          >
+            <div class="relative rounded-2xl overflow-hidden bg-white border border-border/50 hover-lift transition-all duration-500">
+              <div class="relative h-48 lg:h-56 overflow-hidden">
+                <img 
+                  src="/images/projects/petra-cover.svg" 
+                  alt="Petra Water Management Simulation"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute top-4 left-4">
+                  <span class="px-3 py-1 rounded-full bg-teal-500 text-white text-xs font-medium">Simulation</span>
+                </div>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <div class="flex items-center gap-2 text-white/90 text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <span>Jordan</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="p-6">
+                <h3 class="font-heading text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  Petra Water Management Simulation
+                </h3>
+                <p class="text-muted-foreground text-sm mb-4 line-clamp-2">
+                  Advanced hydrological modeling to analyze ancient Nabataean water infrastructure using 100-year stochastic climate simulations.
+                </p>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                    <span class="flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                      Active
+                    </span>
+                    <span>Since 2021</span>
+                  </div>
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Project 4: ICAT -->
+          <a 
+            href="/projects/icat/"
+            class="group flex-shrink-0 w-[340px] lg:w-[400px] scroll-snap-item animate-on-scroll delay-300"
+          >
+            <div class="relative rounded-2xl overflow-hidden bg-white border border-border/50 hover-lift transition-all duration-500">
+              <div class="relative h-48 lg:h-56 overflow-hidden">
+                <img 
+                  src="/images/projects/icat-cover.svg" 
+                  alt="ICAT Cancer Catchment Analysis"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute top-4 left-4">
+                  <span class="px-3 py-1 rounded-full bg-violet-500 text-white text-xs font-medium">Platform</span>
+                </div>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <div class="flex items-center gap-2 text-white/90 text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Published in Nature</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="p-6">
+                <h3 class="font-heading text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  ICAT: Computational Analysis Toolkit
+                </h3>
+                <p class="text-muted-foreground text-sm mb-4 line-clamp-2">
+                  From R/Shiny prototype to production Django/React platform—methodology published in Nature (March 2024).
+                </p>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                    <span class="flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                      Active
+                    </span>
+                    <span>Since 2023</span>
+                  </div>
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Scroll Hint (mobile) -->
+        <div class="flex justify-center mt-6 lg:hidden">
+          <div class="flex items-center gap-2 text-sm text-muted-foreground">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+            <span>Scroll for more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section - Modern Split Design -->
+  <section class="py-20 lg:py-28 bg-background overflow-hidden">
     <div class="container mx-auto px-4 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <!-- Left Content -->
@@ -367,6 +716,68 @@ const services = [
             </div>
             <h3 class="font-heading font-semibold text-foreground mb-1">CyberGIS</h3>
             <p class="text-sm text-muted-foreground">Cyberinfrastructure for geographic research</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners & Affiliations Section -->
+  <section class="py-16 lg:py-20 bg-muted/30 overflow-hidden">
+    <div class="container mx-auto px-4 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-12 animate-on-scroll">
+        <h2 class="font-heading text-heading-lg text-foreground mb-2">Our Partners & Collaborators</h2>
+        <p class="text-muted-foreground">Working together to advance geospatial research</p>
+      </div>
+      
+      <!-- Logo Scroll Container -->
+      <div class="relative">
+        <!-- Gradient Overlays -->
+        <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-muted/30 to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none"></div>
+        
+        <!-- Scrolling Logos -->
+        <div class="flex overflow-hidden">
+          <div class="flex items-center gap-12 lg:gap-16 animate-scroll">
+            <!-- Partner Logos (repeated for infinite scroll effect) -->
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/uchicago-rcc.svg" alt="UChicago Research Computing Center" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/camel-lab.svg" alt="CAMEL Lab" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/ahmp.svg" alt="Afghan Heritage Mapping Partnership" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/nih-heal.svg" alt="NIH HEAL Initiative" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/ucmc.svg" alt="UChicago Medical Center" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/isac.svg" alt="Institute for the Study of Ancient Cultures" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/uchicago-rcc.svg" alt="UChicago Research Computing Center" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/camel-lab.svg" alt="CAMEL Lab" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/ahmp.svg" alt="Afghan Heritage Mapping Partnership" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/nih-heal.svg" alt="NIH HEAL Initiative" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/ucmc.svg" alt="UChicago Medical Center" class="w-full h-full object-contain" loading="lazy" />
+            </div>
+            <div class="flex-shrink-0 flex items-center justify-center w-48 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+              <img src="/images/partners/isac.svg" alt="Institute for the Study of Ancient Cultures" class="w-full h-full object-contain" loading="lazy" />
+            </div>
           </div>
         </div>
       </div>
