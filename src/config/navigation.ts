@@ -123,11 +123,6 @@ export const mainNav: NavItem[] = [
         description: 'Request access to RCC-GIS services'
       },
       { 
-        href: '/getting-started/orientation/', 
-        label: 'Orientation',
-        description: 'Get started with our orientation materials'
-      },
-      { 
         href: '/getting-started/faq/', 
         label: 'FAQ',
         description: 'Frequently asked questions'
